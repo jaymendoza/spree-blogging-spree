@@ -1,0 +1,23 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'nicEdit', 'nicEditConfig' %>
+  <%= stylesheet_link_tag 'blog' %>
+<% end %>
+
+<%= error_messages_for :blog_entry %>
+<br />
+
+<p>
+  <%= form.label :author %><br />
+  <%= form.text_field :author %>
+</p>
+
+<p>
+  <%= form.label :title %><br />
+  <%= form.text_field :title %>
+</p>
+
+<%= form.label :body %><br />
+<%= form.text_area :body, :id => 'blog_entry_body', :style => 'width: 700px' %>
+
+<br/>
+<p><%= form.submit button_name %></p>

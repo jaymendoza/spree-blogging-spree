@@ -1,0 +1,18 @@
+#blog-container { width: 900px; margin: 0 auto }
+#blog-entries { float: left; list-style: none; margin: 0; padding-bottom: 2em }
+#blog-sidebar { float: right }
+
+.blog_entry { width: 650px }
+.blog_entry h2 { margin-bottom: -5px }
+.blog_entry h2 a { color: #1B3F71; text-decoration: none; line-height: 26px }
+.blog_entry .date { color: #caa627; font-weight: bold; margin-bottom: 8px }
+.blog_entry p { margin-bottom: 15px }
+
+/* admin */
+table.entry-list { width: 1000px }
+table.entry-list th.date { width: 140px }
+table.entry-list th.author { width: 100px }
+table.entry-list th.title { width: 310px }
+table.entry-list th.body { width: 213px }
+
+input#blog_entry_author, input#blog_entry_title { width: 400px }
