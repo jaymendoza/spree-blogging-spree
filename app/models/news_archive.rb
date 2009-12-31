@@ -10,7 +10,7 @@ class NewsArchive
   end
 
   def find_months_for_year(year)
-    @entries.select {|e| e.created_at.year == year }.map {|ey| ey.created_at.month }.uniq
+    @entries.select {|e| e.created_at.year == year }.map {|ey| ey.created_at.strftime("%B") }.uniq
   end
 
   def years_with_months

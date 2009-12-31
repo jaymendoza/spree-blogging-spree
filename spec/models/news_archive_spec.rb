@@ -37,8 +37,10 @@ describe NewsArchive do
 
   context "#find_months_for_year" do
     before(:each) do
+      BlogEntry.destroy_all
+      5.times { Factory(:blog_entry_months) }
       @archive = NewsArchive.new
-      @months = @archive.find_months_for_year(2001)
+      @months = @archive.find_months_for_year(2009)
     end
 
     it "should return an array" do
@@ -53,26 +55,22 @@ describe NewsArchive do
   end
 
   context "#years_with_months" do
-    context "its return value" do
-      before(:each) do
-        @archive = NewsArchive.new
-        @archive.find_years
-        @years_with_months = @archive.years_with_months
-      end
+    before(:each) do
+      @archive = NewsArchive.new
+      @archive.find_years
+      @years_with_months = @archive.years_with_months
+    end
 
-      it "should be a hash" do
-        @years_with_months.should be_an_instance_of(Hash)
-      end
+    it "should return a hash" do
+      @years_with_months.should be_an_instance_of(Hash)
+    end
 
-      # TODO: figure out what to do re: months as Strings or Fixnums
-      # (i.e. December or 12)
-      it "should have arrays of Strings as its hash values" do
-        @years_with_months.values.each do |months|
-          months.should be_an_instance_of(Array)
+    it "should return a hash with arrays of Strings as its hash values" do
+      @years_with_months.values.each do |months|
+        months.should be_an_instance_of(Array)
 
-          months.each do |month|
-            month.should be_an_instance_of(Fixnum)
-          end
+        months.each do |month|
+          month.should be_an_instance_of(String)
         end
       end
     end
