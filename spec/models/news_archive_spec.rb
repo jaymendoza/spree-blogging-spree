@@ -16,7 +16,6 @@ describe NewsArchive do
       BlogEntry.destroy_all
       5.times { Factory.create(:blog_entry) }
       @archive = NewsArchive.new
-      @archive.find_years
     end
 
     it "should be an array" do
@@ -61,7 +60,6 @@ describe NewsArchive do
       BlogEntry.destroy_all
       5.times { Factory(:blog_entry_months) }
       @archive = NewsArchive.new
-      @archive.find_years
       @years_with_months = @archive.years_with_months
     end
 
@@ -86,7 +84,6 @@ describe NewsArchive do
         BlogEntry.destroy_all
         5.times { Factory(:blog_entry_months) }
         @archive = NewsArchive.new
-        @archive.find_years
         @entries = @archive.map_entries
       end
 
@@ -115,7 +112,6 @@ describe NewsArchive do
       BlogEntry.destroy_all
       5.times { Factory(:blog_entry_months) }
       @archive = NewsArchive.new
-      @archive.find_years
       @months_with_entries = @archive.months_with_entries(2009, [1,2,3])
     end
 
@@ -130,6 +126,18 @@ describe NewsArchive do
     it "should return a hash with arrays of BlogEntries" do
       @months_with_entries.values.first.should be_an_instance_of(Array)
       @months_with_entries.values.first.first.should be_an_instance_of(BlogEntry)
+    end
+  end
+
+  context "self.generate" do
+    before(:each) do
+      BlogEntry.destroy_all
+      5.times { Factory(:blog_entry_months) }
+      @news_archive = NewsArchive.generate
+    end
+
+    it "should return a hash" do
+      @news_archive.should be_an_instance_of(Hash)
     end
   end
 

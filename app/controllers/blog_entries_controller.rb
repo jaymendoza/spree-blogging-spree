@@ -1,5 +1,5 @@
 class BlogEntriesController < Spree::BaseController
-  # helper Spree::BaseHelper
+  before_filter :load_news_archive_data
 
   resource_controller
   actions :show, :index
@@ -10,5 +10,9 @@ class BlogEntriesController < Spree::BaseController
 
   show.before do
     @blog_entries = BlogEntry.find params[:id]
+  end
+
+  def load_news_archive_data
+    @news_archive = NewsArchive.generate
   end
 end

@@ -1,8 +1,13 @@
 class NewsArchive
   attr_accessor :entries, :years
 
+  def self.generate
+    self.new.map_entries
+  end
+
   def initialize
     @entries = BlogEntry.all
+    find_years
   end
 
   def find_years
@@ -25,7 +30,7 @@ class NewsArchive
     returning Hash.new do |hash|
       months.each do |month|
         date = DateTime.new(year, month)
-        hash[month] = BlogEntry.for_month(date)
+        hash[month] = BlogEntry.for_month(date).compact
       end
     end
   end
