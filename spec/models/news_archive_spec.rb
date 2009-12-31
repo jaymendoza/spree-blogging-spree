@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe NewsArchive do
   before(:each) do
+    BlogEntry.destroy_all
     5.times { Factory(:blog_entry) }
     @archive = NewsArchive.new
   end
@@ -12,6 +13,7 @@ describe NewsArchive do
 
   context "the years array" do
     before(:each) do
+      BlogEntry.destroy_all
       5.times { Factory.create(:blog_entry) }
       @archive = NewsArchive.new
       @archive.find_years
@@ -47,15 +49,17 @@ describe NewsArchive do
       @months.should be_an_instance_of(Array)
     end
 
-    it "should have Strings as array elements" do
+    it "should have Fixnum as array elements" do
       @months.each do |month|
-        month.should be_an_instance_of(String)
+        month.should be_an_instance_of(Fixnum)
       end
     end
   end
 
   context "#years_with_months" do
     before(:each) do
+      BlogEntry.destroy_all
+      5.times { Factory(:blog_entry_months) }
       @archive = NewsArchive.new
       @archive.find_years
       @years_with_months = @archive.years_with_months
@@ -65,14 +69,67 @@ describe NewsArchive do
       @years_with_months.should be_an_instance_of(Hash)
     end
 
-    it "should return a hash with arrays of Strings as its hash values" do
+    it "should return a hash with arrays of Fixnums as its hash values" do
       @years_with_months.values.each do |months|
         months.should be_an_instance_of(Array)
 
         months.each do |month|
-          month.should be_an_instance_of(String)
+          month.should be_an_instance_of(Fixnum)
         end
       end
+    end
+  end
+
+  context "#map_entries" do
+    context "the returned hash" do
+      before(:each) do
+        BlogEntry.destroy_all
+        5.times { Factory(:blog_entry_months) }
+        @archive = NewsArchive.new
+        @archive.find_years
+        @entries = @archive.map_entries
+      end
+
+      it "should be a Hash" do
+        @entries.should be_an_instance_of(Hash)
+      end
+
+      it "should be a nested Hash" do
+        @entries.values.first.should be_an_instance_of(Hash)
+      end
+
+      it "should have years as keys" do
+        @entries.keys.first.to_s.should match /\d{4}/
+      end
+
+      it "should return arrays of BlogEntries nested in hashes" do
+        blog_entries = @entries.first[1].values.flatten
+        blog_entries.should be_an_instance_of(Array)
+        blog_entries.first.should be_an_instance_of(BlogEntry)
+      end
+    end
+  end
+
+  context "#months_with_entries" do
+    before(:each) do
+      BlogEntry.destroy_all
+      5.times { Factory(:blog_entry_months) }
+      @archive = NewsArchive.new
+      @archive.find_years
+      @months_with_entries = @archive.months_with_entries(2009, [1,2,3])
+    end
+
+    it "should return a hash" do
+      @months_with_entries.should be_an_instance_of(Hash)
+    end
+
+    it "should return a hash with 1 to 2-digit months as its keys" do
+      @months_with_entries.keys.first.to_s.should match /\d{1,2}/
+    end
+
+    it "should return a hash with arrays of BlogEntries" do
+      @months_with_entries.values.first.should be_an_instance_of(Array)
+      @months_with_entries.values.first.first.should be_an_instance_of(BlogEntry)
     end
   end
 
