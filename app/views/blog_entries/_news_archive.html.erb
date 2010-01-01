@@ -1,10 +1,14 @@
-<ul>
+<% content_for :head do %>
+  <%= javascript_include_tag 'news_archive_widget' %>
+<% end %>
+
+<ul id="news-archive">
 <% news_archive.each do |year, months_with_entries| %>
-  <li><%= year %>
-    <ul>
+  <li class="year"><%= year %>
+    <ul class="months">
     <% months_with_entries.each do |month, entries| %>
       <li><%= month %>
-        <ul>
+        <ul class="posts">
         <% entries.each do |entry| %>
           <li><%= link_to(entry.title, blog_entry_path(entry)) %></li>
         <% end %>
