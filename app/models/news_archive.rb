@@ -19,16 +19,16 @@ class NewsArchive
   end
 
   def years_with_months
-    returning Hash.new do |hash|
+    returning Array.new do |ary|
       @years.each do |year|
-        hash[year] = find_months_for_year(year)
+        ary << [year, find_months_for_year(year)]
       end
     end
   end
 
   def months_with_entries(year, months)
     returning Array.new do |ary|
-      months.sort.reverse.each do |month|
+      months.each do |month|
         date = DateTime.new(year, month)
         ary << [date.strftime("%B"), BlogEntry.for_month(date)]
       end
@@ -36,9 +36,9 @@ class NewsArchive
   end
 
   def map_entries
-    returning Hash.new do |hash|
+    returning Array.new do |ary|
       years_with_months.each do |year, months|
-        hash[year] = months_with_entries(year, months)
+        ary << [year, months_with_entries(year, months)]
       end
     end
   end

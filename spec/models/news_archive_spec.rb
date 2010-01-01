@@ -46,21 +46,20 @@ describe NewsArchive do
 
   context "#years_with_months" do
     before(:each) do
+      BlogEntry.destroy_all
+      5.times { Factory(:blog_entry_months) }
+      @archive = NewsArchive.new
       @years_with_months = @archive.years_with_months
     end
 
-    it "should return a hash" do
-      @years_with_months.should be_an_instance_of(Hash)
+    it "should return an array" do
+      @years_with_months.should be_an_instance_of(Array)
     end
 
-    it "should return a hash with arrays of Fixnums as its hash values" do
-      @years_with_months.values.each do |months|
-        months.should be_an_instance_of(Array)
-
-        months.each do |month|
-          month.should be_an_instance_of(Fixnum)
-        end
-      end
+    it "should return an array with arrays of Fixnums as its first columns" do
+      months = @years_with_months.first[1]
+      months.should be_an_instance_of(Array)
+      months.first.should be_an_instance_of(Fixnum)
     end
   end
 
@@ -76,12 +75,8 @@ describe NewsArchive do
         @entries = @archive.map_entries
       end
 
-      it "should return a Hash" do
-        @entries.should be_an_instance_of(Hash)
-      end
-
-      it "should return a nested Array as hash values" do
-        @entries.first.should be_an_instance_of(Array)
+      it "should return an Array" do
+        @entries.should be_an_instance_of(Array)
       end
 
       it "should return a nested Array with years as first elements" do
@@ -121,8 +116,8 @@ describe NewsArchive do
       @news_archive = NewsArchive.generate
     end
 
-    it "should return a hash" do
-      @news_archive.should be_an_instance_of(Hash)
+    it "should return an array" do
+      @news_archive.should be_an_instance_of(Array)
     end
   end
 
