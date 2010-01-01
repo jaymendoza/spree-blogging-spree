@@ -1,0 +1,17 @@
+<ul>
+<% news_archive.each do |year, months_with_entries| %>
+  <li><%= year %>
+    <ul>
+    <% months_with_entries.each do |month, entries| %>
+      <li><%= month %>
+        <ul>
+        <% entries.each do |entry| %>
+          <li><%= entry.title %></li>
+        <% end %>
+        </ul>
+      </li>
+    <% end %>
+    </ul>
+  </li>
+<% end %>
+</ul>
