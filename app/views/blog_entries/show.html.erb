@@ -1,1 +1,14 @@
-<%= render :partial => 'blog', :locals => {:e => @blog_entries} %>
+
+<div id="blog-container">
+  <ul id="blog-entries">
+    <li><%= render :partial => 'blog', :locals => {:e => @blog_entry} %></li>
+  </ul>
+
+  <div id="blog-sidebar">
+    <% cache do %>
+      <%= render :partial => 'news_archive', :object => @news_archive %>
+    <% end %>
+  </div>
+
+  <br class="clearfloat" />
+</div>

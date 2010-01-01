@@ -10,7 +10,7 @@ class BlogEntriesController < Spree::BaseController
   end
 
   show.before do
-    @blog_entries = BlogEntry.find params[:id]
+    @blog_entry = BlogEntry.find params[:id]
   end
 
   def load_news_archive_data
