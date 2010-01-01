@@ -6,7 +6,7 @@
       <li><%= month %>
         <ul>
         <% entries.each do |entry| %>
-          <li><%= entry.title %></li>
+          <li><%= link_to(entry.title, blog_entry_path(entry)) %></li>
         <% end %>
         </ul>
       </li>

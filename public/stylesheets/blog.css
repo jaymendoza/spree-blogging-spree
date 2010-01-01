@@ -16,3 +16,10 @@ table.entry-list th.title { width: 310px }
 table.entry-list th.body { width: 213px }
 
 input#blog_entry_author, input#blog_entry_title { width: 400px }
+
+/* news archive widget */
+#blog-sidebar ul {}
+#blog-sidebar li { list-style-type: none }
+#blog-sidebar ul li { font-weight: bold }
+#blog-sidebar ul ul li { font-weight: normal }
+#blog-sidebar ul ul ul li a { }
