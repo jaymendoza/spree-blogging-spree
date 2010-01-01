@@ -1,6 +1,6 @@
 #blog-container { width: 900px; margin: 0 auto }
-#blog-entries { float: left; list-style: none; margin: 0; padding-bottom: 2em }
-#blog-sidebar { float: right }
+#blog-entries { float: left; width: 615px; list-style: none; margin: 0; padding-bottom: 2em }
+#blog-sidebar { float: right; width: 250px }
 
 .blog_entry { width: 650px }
 .blog_entry h2 { margin-bottom: -5px }

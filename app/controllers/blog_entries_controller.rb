@@ -1,8 +1,9 @@
 class BlogEntriesController < Spree::BaseController
-  before_filter :load_news_archive_data
-
   resource_controller
   actions :show, :index
+
+  before_filter :load_news_archive_data
+  cache_sweeper :news_archive_sweeper, :only => [:index, :show]
 
   index.before do
     @blog_entries = BlogEntry.find :all, :order => "created_at DESC"
