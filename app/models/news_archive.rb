@@ -27,10 +27,10 @@ class NewsArchive
   end
 
   def months_with_entries(year, months)
-    returning Hash.new do |hash|
-      months.each do |month|
+    returning Array.new do |ary|
+      months.sort.reverse.each do |month|
         date = DateTime.new(year, month)
-        hash[month] = BlogEntry.for_month(date).compact
+        ary << [date.strftime("%B"), BlogEntry.for_month(date)]
       end
     end
   end

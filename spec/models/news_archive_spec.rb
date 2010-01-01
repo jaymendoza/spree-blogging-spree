@@ -91,16 +91,16 @@ describe NewsArchive do
         @entries.should be_an_instance_of(Hash)
       end
 
-      it "should be a nested Hash" do
-        @entries.values.first.should be_an_instance_of(Hash)
+      it "should be a nested Array" do
+        @entries.first.should be_an_instance_of(Array)
       end
 
-      it "should have years as keys" do
-        @entries.keys.first.to_s.should match /\d{4}/
+      it "should have years as first elements" do
+        @entries.first[0].to_s.should match /\d{4}/
       end
 
-      it "should return arrays of BlogEntries nested in hashes" do
-        blog_entries = @entries.first[1].values.flatten
+      it "should return arrays of BlogEntries nested in arrays" do
+        blog_entries = @entries.first[1].first[1]
         blog_entries.should be_an_instance_of(Array)
         blog_entries.first.should be_an_instance_of(BlogEntry)
       end
@@ -112,20 +112,21 @@ describe NewsArchive do
       BlogEntry.destroy_all
       5.times { Factory(:blog_entry_months) }
       @archive = NewsArchive.new
-      @months_with_entries = @archive.months_with_entries(2009, [1,2,3])
+      @months_with_entries = @archive.months_with_entries(2009, @archive.entries.map {|e| e.created_at.month }.uniq)
     end
 
-    it "should return a hash" do
-      @months_with_entries.should be_an_instance_of(Hash)
+    it "should return an array" do
+      @months_with_entries.should be_an_instance_of(Array)
     end
 
-    it "should return a hash with 1 to 2-digit months as its keys" do
-      @months_with_entries.keys.first.to_s.should match /\d{1,2}/
+    it "should return a nested array with month names as its first elements" do
+      @months_with_entries.first[0].should be_an_instance_of(String)
     end
 
-    it "should return a hash with arrays of BlogEntries" do
-      @months_with_entries.values.first.should be_an_instance_of(Array)
-      @months_with_entries.values.first.first.should be_an_instance_of(BlogEntry)
+    it "should return an array with arrays of BlogEntries" do
+      blog_entries = @months_with_entries.first[1]
+      blog_entries.should be_an_instance_of(Array)
+      blog_entries.first.should be_an_instance_of(BlogEntry)
     end
   end
 
