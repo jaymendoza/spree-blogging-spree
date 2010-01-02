@@ -11,11 +11,12 @@ class NewsArchive
   end
 
   def find_years
-    @years = @entries.map {|e| e.created_at.year }.uniq
+    @years = @entries.map {|e| e.created_at.year }.uniq.sort.reverse
   end
 
   def find_months_for_year(year)
-    @entries.select {|e| e.created_at.year == year }.map {|ey| ey.created_at.month }.uniq
+    @entries.select {|e| e.created_at.year == year }.
+                map {|e| e.created_at.month }.uniq.sort.reverse
   end
 
   def years_with_months
