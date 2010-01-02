@@ -1,46 +1,29 @@
-Blog
-====
+Spree Blog + News Archive
+=========================
 
-A simple blog.
+Originally forked from paulcc/spree-blog, this extension intends to offer a more complete blogging solution for use within the Spree E-Commerce application.
 
-Fork-specific Notes
--------------------
-* Upgraded to work with 0.9.3 (admin tabs needed adjustment)
-* Commenting feature removed
-* Product associations removed
-* Removed most (if not all) inline CSS in favor of an external stylesheet
+Development is in its early stages, containing only a simple blog and a jQuery-powered news archive widget. See the current TODO list below.
 
-Usage
------
+Dependencies
+------------
 
-grab with: `script/extension install git://github.com/paulcc/spree-blog.git`
- 
-Administrator writes a blog entry in Html via admin interface
+* Spree 0.9.3*
+* jQuery
+* nicEdit _(included)_
+* RSpec _(for included specs)_
 
-S/he can embed product details by including skus in \*...\*, eg "\*00120\*"
-These expanded inline into link to product and a corresponding small
-image is added after the blog text. 
+_*may run on edge Spree with some modification_
 
-/the-blog/ (or blog_entries_path) then shows the entries in decreasing date order
+Installation
+------------
 
+`script/extension install git://github.com/jaymendoza/spree-blog-news-archive.git`
 
-Users can read the comments attached to an entry, and logged-in users can 
-submit plain text comments with an optional page link. 
+TODO
+----
 
-Only admin-approved comments are shown.  Administrators can approve and/or 
-edit comments.
-
-
-In addition to the usual new/create/index actions, there's a partial
-"_blog_snippet" for showing the most recent N blog entry titles.
-
-
-
-Implementation
---------------
-
-I might rename "blog_entry" to just "blog" - unless there's a proper word for
-an entry in a blog! Suggestions on a postcard...
-
-
-
+* Slugs/Pretty URLs
+* Month/Year archive pages
+* Tags
+* Comments (?)
