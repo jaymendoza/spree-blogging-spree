@@ -1,7 +1,3 @@
-<% content_for :head do %>
-  <%= javascript_include_tag 'news_archive_widget' %>
-<% end %>
-
 <ul id="news-archive">
 <% news_archive.each do |year, months_with_entries| %>
   <li class="year"><%= year %>

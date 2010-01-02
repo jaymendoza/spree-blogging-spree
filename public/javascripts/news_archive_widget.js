@@ -7,9 +7,9 @@ jQuery(function() {
 
     if($(evt.target).parent().hasClass('months')) {
       if(entry_list.is(':visible')) {
-        entry_list.slideUp('normal');
+        entry_list.slideUp('fast');
       } else {
-        entry_list.slideDown('normal');
+        entry_list.slideDown('fast');
       }
     }
   });
@@ -19,10 +19,10 @@ jQuery(function() {
 
     if($(evt.target).parent().is('#news-archive')) {
       if(month_list.is(':visible')) {
-        month_list.find('ul.posts').slideUp('normal');
-        month_list.slideUp('normal');
+        month_list.find('ul.posts').slideUp('fast');
+        month_list.slideUp('fast');
       } else {
-        month_list.slideDown('normal');
+        month_list.slideDown('fast');
       }
     }
   });
