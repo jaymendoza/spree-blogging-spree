@@ -11,8 +11,19 @@ class Admin::BlogEntriesController < Admin::BaseController
     wants.html { redirect_to admin_blog_entries_path }
   end
 
+  create.after do
+    expire_page :controller => 'blog_entries', :action => ['show', 'index']
+  end
+
   update.response do |wants|
     wants.html { redirect_to admin_blog_entries_path }
   end
 
+  update.after do
+    expire_page :controller => 'blog_entries', :action => ['show', 'index']
+  end
+
+  destroy.after do
+    expire_page :controller => 'blog_entries', :action => ['show', 'index']
+  end
 end
