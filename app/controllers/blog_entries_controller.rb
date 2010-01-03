@@ -14,6 +14,6 @@ class BlogEntriesController < Spree::BaseController
   end
 
   def load_news_archive_data
-    @news_archive = NewsArchive.generate
+    @news_archive = NewsArchive.new.entries
   end
 end

@@ -2,123 +2,50 @@ require 'spec_helper'
 
 describe NewsArchive do
   before(:each) do
-    @archive = NewsArchive.new
+    BlogEntry.destroy_all
+    5.times {|i| Factory(:blog_entry, :created_at => Date.new(2010+i)) }
+    @news_archive = NewsArchive.new
   end
 
-  it "should return all entries" do
-    @archive.entries.should == BlogEntry.all
+  describe "the processed set of entry data" do
+    it "should be an Array" do
+      @news_archive.entries.should be_an_instance_of(Array)
+    end
+
+    it "should have years as its root elements" do
+      @news_archive.entries.first[0].to_s.should match /\d{4}/
+    end
+
+    it "should have nested arrays of BlogEntries" do
+      @news_archive.entries.first[1].first[1].first.should be_an_instance_of(BlogEntry)
+    end
   end
 
-  context "the years array" do
+  describe "the list of years" do
     it "should be an array" do
-      @archive.years.should be_an_instance_of(Array)
+      @news_archive.years.should be_an_instance_of(Array)
     end
 
     it "should include 4-digit years" do
-      @archive.years.each do |year|
-        year.to_s.should match /\d{4}/
-      end
+      @news_archive.years.first.to_s.should match /\d{4}/
     end
 
-    it "should include only years encompassed by the blog entries" do
-      years = BlogEntry.all.map {|e| e.created_at.year }.uniq
-      @archive.years.each do |year|
-        years.should include year
-      end
+    it "should include only years encompassed in the blog entries" do
+      @news_archive.years.should == [2014,2013,2012,2011,2010]
     end
   end
 
-  context "#find_months_for_year" do
+  describe "the list of months with posts for a given year" do
     before(:each) do
-      @months = @archive.find_months_for_year(2009)
+      @months = @news_archive.months_for(2010)
     end
 
-    it "should return an array" do
+    it "should be an array" do
       @months.should be_an_instance_of(Array)
     end
 
-    it "should have Fixnum as array elements" do
-      @months.each do |month|
-        month.should be_an_instance_of(Fixnum)
-      end
+    it "should contain 1 or 2-digit numbers" do
+      @months.first.to_s.should match /\d{1,2}/
     end
   end
-
-  context "#years_with_months" do
-    before(:each) do
-      BlogEntry.destroy_all
-      5.times { Factory(:blog_entry_months) }
-      @archive = NewsArchive.new
-      @years_with_months = @archive.years_with_months
-    end
-
-    it "should return an array" do
-      @years_with_months.should be_an_instance_of(Array)
-    end
-
-    it "should return an array with arrays of Fixnums as its first columns" do
-      months = @years_with_months.first[1]
-      months.should be_an_instance_of(Array)
-      months.first.should be_an_instance_of(Fixnum)
-    end
-  end
-
-  describe "organize entries" do
-    before(:each) do
-      BlogEntry.destroy_all
-      5.times { Factory(:blog_entry_months) }
-      @archive = NewsArchive.new
-    end
-
-    context "#map_entries" do
-      before(:each) do
-        @entries = @archive.map_entries
-      end
-
-      it "should return an Array" do
-        @entries.should be_an_instance_of(Array)
-      end
-
-      it "should return a nested Array with years as first elements" do
-        @entries.first[0].to_s.should match /\d{4}/
-      end
-
-      it "should return arrays of BlogEntries nested in arrays" do
-        blog_entries = @entries.first[1].first[1]
-        blog_entries.should be_an_instance_of(Array)
-        blog_entries.first.should be_an_instance_of(BlogEntry)
-      end
-    end
-
-    context "#months_with_entries" do
-      before(:each) do
-        @months_with_entries = @archive.months_with_entries(2009, @archive.entries.map {|e| e.created_at.month }.uniq)
-      end
-
-      it "should return an array" do
-        @months_with_entries.should be_an_instance_of(Array)
-      end
-
-      it "should return a nested array with month names as its first elements" do
-        @months_with_entries.first[0].should be_an_instance_of(String)
-      end
-
-      it "should return an array with arrays of BlogEntries" do
-        blog_entries = @months_with_entries.first[1]
-        blog_entries.should be_an_instance_of(Array)
-        blog_entries.first.should be_an_instance_of(BlogEntry)
-      end
-    end
-  end
-
-  context "self.generate" do
-    before(:each) do
-      @news_archive = NewsArchive.generate
-    end
-
-    it "should return an array" do
-      @news_archive.should be_an_instance_of(Array)
-    end
-  end
-
 end

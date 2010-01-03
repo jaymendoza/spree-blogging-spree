@@ -21,11 +21,10 @@ Spork.prefork do
   if File.directory?(File.dirname(__FILE__) + "/matchers")
     Dir[File.dirname(__FILE__) + "/matchers/*.rb"].each {|file| require file }
   end
-
-  require File.expand_path(File.dirname(__FILE__) + "/factories")
 end
 
 Spork.each_run do
+  require File.expand_path(File.dirname(__FILE__) + "/factories")
 end
 
 Spec::Runner.configure do |config|

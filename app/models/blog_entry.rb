@@ -8,5 +8,5 @@ class BlogEntry < ActiveRecord::Base
 
   named_scope :for_month, lambda {|date| {
     :conditions => {:created_at => (date.beginning_of_month..date.end_of_month) },
-    :order => "created_at DESC" } }
+    :order      => "created_at DESC" }}
 end
