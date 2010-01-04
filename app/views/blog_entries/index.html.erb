@@ -1,10 +1,10 @@
 <div id="blog-container">
   <ul id="blog-entries">
-  <% @blog_entries.each do |e| %>
-    <li>
-      <%= render :partial => 'blog', :locals => {:e => e} %>
-    </li>
-  <% end %>
+    <% @blog_entries.each do |e| %>
+      <li>
+        <%= render :partial => 'blog', :locals => {:e => e} %>
+      </li>
+    <% end %>
   </ul>
 
   <div id="blog-sidebar">

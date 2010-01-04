@@ -13,6 +13,12 @@ class BlogEntriesController < Spree::BaseController
     @blog_entry = BlogEntry.find params[:id]
   end
 
+  def tag
+    @blog_entries = BlogEntry.find_for_tag params[:tag]
+    render :action => :index
+  end
+
+  private
   def load_news_archive_data
     @news_archive = NewsArchive.new.entries
   end

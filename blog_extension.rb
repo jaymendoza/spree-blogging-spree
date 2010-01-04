@@ -8,10 +8,11 @@ class BlogExtension < Spree::Extension
 
   define_routes do |map|
     map.resources :blog_entries, :as => 'blog'
-    # map.connect '/blog/:year/:month/:day', :controller => 'blog_entry', :action => 'index'
     map.namespace :admin do |admin|
       admin.resources :blog_entries, :as => 'blog'
     end  
+    map.tag 'blog/tag/:tag', :controller => 'blog_entries', :action => 'tag'
+    # map.connect '/blog/:year/:month/:day', :controller => 'blog_entries', :action => 'index'
   end
   
   def activate
@@ -24,7 +25,10 @@ class BlogExtension < Spree::Extension
     end
   end
 
+  def self.require_gems(config)
+    config.gem 'is_taggable'
+  end
+
   def deactivate
   end
-  
 end
