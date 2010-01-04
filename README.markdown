@@ -11,14 +11,22 @@ Dependencies
 * Spree 0.9.3*
 * jQuery
 * nicEdit _(included)_
-* RSpec _(for included specs)_
 
 _*may run on edge Spree with some modification_
+
+Testing
+-------
+
+* RSpec
+* factory_girl
+
+The included spec_helper.rb is configured for use with Spork due to Spree's extended loading time.
 
 Installation
 ------------
 
-`script/extension install git://github.com/jaymendoza/spree-blog-news-archive.git`
+    script/extension install git://github.com/jaymendoza/spree-blog-news-archive.git
+    rake db:migrate
 
 TODO
 ----
