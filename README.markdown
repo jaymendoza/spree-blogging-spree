@@ -1,4 +1,4 @@
-Spree Blog + News Archive
+BloggingSpree
 =========================
 
 Originally forked from paulcc/spree-blog, this extension intends to offer a more complete blogging solution for use within the Spree E-Commerce application.
@@ -9,6 +9,7 @@ Dependencies
 ------------
 
 * Spree 0.9.3*
+* is_taggable
 * jQuery
 * nicEdit _(included)_
 
@@ -25,7 +26,7 @@ The included spec_helper.rb is configured for use with Spork due to Spree's exte
 Installation
 ------------
 
-    script/extension install git://github.com/jaymendoza/spree-blog-news-archive.git
+    script/extension install git://github.com/jaymendoza/BloggingSpree.git
     rake db:migrate
 
 TODO
@@ -33,5 +34,5 @@ TODO
 
 * Slugs/Pretty URLs
 * Month/Year archive pages
-* Tags
+* <del>Tags</del>
 * Comments (?)
