@@ -19,7 +19,7 @@ class NewsArchive
     years.each do |year|
       months_for(year).each do |month|
         date = Date.new(year, month)
-        @entries << [year, [[date.strftime("%B"), BlogEntry.for_month(date)]]]
+        @entries << [year, [[date.strftime("%B"), BlogEntry.by_date(date, :month)]]]
       end
     end
   end

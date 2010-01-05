@@ -6,15 +6,6 @@ class BlogExtension < Spree::Extension
   description "BloggingSpree: A Spree blogging solution"
   url "git://github.com/jaymendoza/BloggingSpree.git"
 
-  define_routes do |map|
-    map.resources :blog_entries, :as => 'blog'
-    map.namespace :admin do |admin|
-      admin.resources :blog_entries, :as => 'blog'
-    end  
-    map.tag 'blog/tag/:tag', :controller => 'blog_entries', :action => 'tag'
-    # map.connect '/blog/:year/:month/:day', :controller => 'blog_entries', :action => 'index'
-  end
-  
   def activate
     Admin::BaseController.class_eval do
       before_filter :add_blog_tab

@@ -1,22 +1,31 @@
 class BlogEntry < ActiveRecord::Base
-  default_scope :order => "created_at DESC"
+  acts_as_url :title
   is_taggable :tags
 
   validates_presence_of :title
   validates_presence_of :body
 
+  default_scope :order => "created_at DESC"
+
   def self.latest(limit = 3)
-    find(:all, :order => "created_at DESC", :limit => limit)
+    find(:all, :limit => limit)
   end
 
-  named_scope :for_month, lambda {|date| {
-    :conditions => {:created_at => (date.beginning_of_month..date.end_of_month) },
-    :order      => "created_at DESC" }
-  }
+  def self.by_date(date, period = nil)
+    if date.is_a?(Hash)
+      keys = [:day, :month, :year].select {|key| date.include?(key) }
+      period = keys.first.to_s
+      date = Date.new(*keys.map {|key| date[key].to_i }.reverse)
+    end
 
-  named_scope :find_for_tag, lambda {|name| {
-    :select => 'DISTINCT(blog_entries.*)',
-    :joins => [:taggings, :tags],
-    :conditions => {:tags => {:name => name} } }
-  }
+    find(:all, :conditions => {:created_at => (date.send("beginning_of_#{period}")..date.send("end_of_#{period}") )} )
+  end 
+
+  def self.by_tag(name)
+    find(:all, :select => 'DISTINCT(blog_entries.*)', :joins => [:taggings, :tags], :conditions => {'tags.name' => name })
+  end
+
+  def permalink
+    "/blog/#{created_at.year}/#{created_at.month}/#{created_at.day}/#{url}"
+  end
 end

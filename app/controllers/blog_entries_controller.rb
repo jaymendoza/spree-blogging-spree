@@ -9,11 +9,16 @@ class BlogEntriesController < Spree::BaseController
   end
 
   show.before do
-    @blog_entry = BlogEntry.find params[:id]
+    @blog_entry = BlogEntry.find(params[:id])
   end
 
   def tag
-    @blog_entries = BlogEntry.find_for_tag params[:tag]
+    @blog_entries = BlogEntry.by_tag(params[:tag])
+    render :action => :index
+  end
+
+  def archive
+    @blog_entries = BlogEntry.by_date(params)
     render :action => :index
   end
 
