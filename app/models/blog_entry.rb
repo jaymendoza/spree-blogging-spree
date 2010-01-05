@@ -1,4 +1,5 @@
 class BlogEntry < ActiveRecord::Base
+  default_scope :order => "created_at DESC"
   is_taggable :tags
 
   validates_presence_of :title
@@ -16,6 +17,6 @@ class BlogEntry < ActiveRecord::Base
   named_scope :find_for_tag, lambda {|name| {
     :select => 'DISTINCT(blog_entries.*)',
     :joins => [:taggings, :tags],
-    :conditions => {:tags => {:name => name}}}
+    :conditions => {:tags => {:name => name} } }
   }
 end

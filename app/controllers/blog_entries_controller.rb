@@ -5,7 +5,7 @@ class BlogEntriesController < Spree::BaseController
   before_filter :load_news_archive_data
 
   index.before do
-    @blog_entries = BlogEntry.find :all, :order => "created_at DESC"
+    @blog_entries = BlogEntry.find :all
   end
 
   show.before do
