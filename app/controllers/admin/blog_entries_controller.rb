@@ -7,24 +7,6 @@ class Admin::BlogEntriesController < Admin::BaseController
     @blog_entries = BlogEntry.find(:all, :order => "created_at DESC")
   end
 
-  create.response do |wants|
-    wants.html { redirect_to admin_blog_entries_path }
-  end
-
-  # TODO: Make this DRY-er
-  create.after do
-    expire_page :controller => 'blog_entries', :action => ['show', 'index']
-  end
-
-  update.response do |wants|
-    wants.html { redirect_to admin_blog_entries_path }
-  end
-
-  update.after do
-    expire_page :controller => 'blog_entries', :action => ['show', 'index']
-  end
-
-  destroy.after do
-    expire_page :controller => 'blog_entries', :action => ['show', 'index']
-  end
+  create.wants.html { redirect_to admin_blog_entries_path }
+  update.wants.html { redirect_to admin_blog_entries_path }
 end

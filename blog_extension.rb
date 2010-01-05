@@ -2,9 +2,9 @@
 # require_dependency 'application'
 
 class BlogExtension < Spree::Extension
-  version "1.0"
-  description "Simple blog facility"
-  url "git://github.com/jaymendoza/spree-blog.git"
+  version "0.1.0"
+  description "BloggingSpree: A Spree blogging solution"
+  url "git://github.com/jaymendoza/BloggingSpree.git"
 
   define_routes do |map|
     map.resources :blog_entries, :as => 'blog'

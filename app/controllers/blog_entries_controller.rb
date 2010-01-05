@@ -1,7 +1,6 @@
 class BlogEntriesController < Spree::BaseController
   resource_controller
   actions :show, :index
-  caches_page :show, :index
 
   before_filter :load_news_archive_data
 
