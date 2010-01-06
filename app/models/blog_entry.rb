@@ -26,6 +26,6 @@ class BlogEntry < ActiveRecord::Base
   end
 
   def permalink
-    "/blog/#{created_at.year}/#{created_at.month}/#{created_at.day}/#{url}"
+    "/blog/#{created_at.utc.year}/#{created_at.utc.month}/#{created_at.utc.day}/#{url}"
   end
 end
