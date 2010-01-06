@@ -1,6 +1,6 @@
 class BlogEntry < ActiveRecord::Base
-  acts_as_url :title
   is_taggable :tags
+  before_save :set_permalink
 
   validates_presence_of :title
   validates_presence_of :body
@@ -25,7 +25,9 @@ class BlogEntry < ActiveRecord::Base
     find(:all, :select => 'DISTINCT(blog_entries.*)', :joins => [:taggings, :tags], :conditions => {'tags.name' => name })
   end
 
-  def permalink
-    "/blog/#{created_at.utc.year}/#{created_at.utc.month}/#{created_at.utc.day}/#{url}"
+  private
+
+  def set_permalink
+    self.permalink = title.to_url
   end
 end
