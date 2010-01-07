@@ -24,6 +24,8 @@ table.entry-list th.body { width: 213px }
 
 input#blog_entry_author, input#blog_entry_title { width: 400px }
 
+#no_entries { text-align: center; margin-top: 30px }
+
 /* news archive widget */
 #blog-sidebar ul.months { width: 185px; }
 #blog-sidebar li { list-style-type: none }
