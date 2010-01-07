@@ -7,6 +7,7 @@ class BlogExtension < Spree::Extension
   url "git://github.com/jaymendoza/BloggingSpree.git"
 
   def activate
+
     Admin::BaseController.class_eval do
       before_filter :add_blog_tab
 

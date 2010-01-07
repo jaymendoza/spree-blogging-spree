@@ -1,6 +1,5 @@
 class BlogEntry < ActiveRecord::Base
   is_taggable :tags
-  before_save :set_permalink
 
   validates_presence_of :title
   validates_presence_of :body
@@ -15,7 +14,7 @@ class BlogEntry < ActiveRecord::Base
     if date.is_a?(Hash)
       keys = [:day, :month, :year].select {|key| date.include?(key) }
       period = keys.first.to_s
-      date = Date.new(*keys.map {|key| date[key].to_i }.reverse)
+      date = Date.new(*keys.reverse.map {|key| date[key].to_i })
     end
 
     find(:all, :conditions => {:created_at => (date.send("beginning_of_#{period}")..date.send("end_of_#{period}") )} )
@@ -23,11 +22,5 @@ class BlogEntry < ActiveRecord::Base
 
   def self.by_tag(name)
     find(:all, :select => 'DISTINCT(blog_entries.*)', :joins => [:taggings, :tags], :conditions => {'tags.name' => name })
-  end
-
-  private
-
-  def set_permalink
-    self.permalink = title.to_url
   end
 end

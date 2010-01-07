@@ -19,13 +19,7 @@ class BlogEntriesController < Spree::BaseController
 
   def archive
     @blog_entries = BlogEntry.by_date(params)
-
-    if params[:slug]
-      @blog_entry = @blog_entries.detect {|e| e.url == params[:slug] }
-      render :action => :show
-    else
-      render :action => :index
-    end
+    render :action => :index
   end
 
   private
