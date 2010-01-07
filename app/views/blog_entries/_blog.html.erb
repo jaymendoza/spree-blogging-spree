@@ -1,10 +1,10 @@
 <div class="blog_entry">
   <h2>
-    <%= link_to "<strong>#{e.title}</strong>", e.permalink %>
+    <%= link_to "<strong>#{e.title}</strong>", blog_entry_path(e) %>
   </h2>
 
   <div class="date">
-    <%= e.created_at.strftime("%A, %d %B %Y") %>
+    <%= e.created_at.utc.strftime("%A, %d %B %Y") %>
   </div>
 
   <div class="body">
