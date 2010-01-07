@@ -1,4 +1,3 @@
-<div class="blog_entry">
   <h2>
     <%= link_to "<strong>#{e.title}</strong>", blog_entry_path(e) %>
   </h2>
@@ -14,5 +13,5 @@
   <% unless e.tag_list.empty? %>
     <%= render :partial => 'tag_list', :locals => {:e => e}  %>
   <% end %>
-</div>
+
 <br/>

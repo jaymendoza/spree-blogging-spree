@@ -1,6 +1,8 @@
 <div id="blog-container">
   <ul id="blog-entries">
-    <li><%= render :partial => 'blog', :locals => {:e => @blog_entry} %></li>
+    <li class="blog_entry">
+      <%= render :partial => 'blog', :locals => {:e => @blog_entry} %>
+    </li>
   </ul>
 
   <div id="blog-sidebar">
