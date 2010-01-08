@@ -20,19 +20,21 @@ Testing
 
 * RSpec
 * factory_girl
+* spork
 
 The included spec_helper.rb is configured for use with Spork due to Spree's extended loading time.
 
 Installation
 ------------
 
-    script/extension install git://github.com/jaymendoza/BloggingSpree.git
+    script/extension install git://github.com/jaymendoza/blogging_spree.git
     rake db:migrate
 
 TODO
 ----
 
 * Slugs/Pretty URLs
-* Month/Year archive pages
+* <del>Month/Year archive pages</del>
+  * exists, but needs to be hooked up to widget
 * <del>Tags</del>
 * Comments (?)
