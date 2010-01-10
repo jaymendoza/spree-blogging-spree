@@ -9,7 +9,7 @@ class BlogEntriesController < Spree::BaseController
   end
 
   show.before do
-    @blog_entry = BlogEntry.find(params[:id])
+    @blog_entry = BlogEntry.find_by_permalink(params[:slug])
   end
 
   def tag

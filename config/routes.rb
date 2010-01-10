@@ -1,3 +1,5 @@
+map.entry_permalink 'blog/:year/:month/:day/:slug', :controller => 'blog_entries', :action => 'show'
+
 map.news_archive 'blog/:year/:month/:day', :controller => 'blog_entries', :action => 'archive',
    :requirements => {:year => /(19|20)\d{2}/, :month => /[01]?\d/, :day => /[0-3]?\d/},
    :month => nil, :day => nil

@@ -33,8 +33,8 @@ Installation
 TODO
 ----
 
-* Slugs/Pretty URLs
+* <del>Slugs/Pretty URLs</del>
 * <del>Month/Year archive pages</del>
-  * exists, but needs to be hooked up to widget
+  * exist, but need to be hooked up to widget
 * <del>Tags</del>
 * Comments (?)
