@@ -27,7 +27,7 @@ The included spec_helper.rb is configured for use with Spork due to Spree's exte
 Installation
 ------------
 
-    script/extension install git://github.com/jaymendoza/blogging_spree.git
+    script/extension install git://github.com/jaymendoza/spree-blogging-spree.git
     rake db:migrate
 
 TODO
