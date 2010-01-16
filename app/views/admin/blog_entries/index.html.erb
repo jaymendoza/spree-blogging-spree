@@ -7,23 +7,27 @@
 <%= link_to t('new_entry'), new_admin_blog_entry_path %>
 <br/><br/>
 
-<table class="entry-list">
-  <tr>
-    <th class="date">Date</th>
-    <th class="title">Title</th>
-    <th></th> 
-<%#    <th class="body">Body</th>%>
-  </tr>
+<% unless @blog_entries.blank? %>
+  <table class="entry-list index">
+    <tr>
+      <th class="date">Date</th>
+      <th class="title">Title</th>
+      <th></th> 
+    </tr>
 
-<% for blog_entry in @blog_entries %>
-  <tr>
-    <td><%=h blog_entry.created_at.strftime("%B %d, %Y") %></td>
-    <td><%=blog_entry.title %></td>
-<%#    <td><%= truncate(blog_entry.body, :length => 100, :truncate_string => "...") +|</td>%>
-    <td>
-        <%= link_to t('edit'), [:edit, :admin, blog_entry] %> |
-        <%= link_to t('delete'), [:admin, blog_entry], :method => :delete, :confirm => t('are_you_sure_blog_entry') %>
-    </td>
-  </tr>
+  <% for blog_entry in @blog_entries %>
+    <tr id="<%= dom_id blog_entry %>">
+      <td><%=h blog_entry.created_at.strftime("%B %d, %Y") %></td>
+      <td><%= blog_entry.title %></td>
+      <td class="actions">
+        <%= link_to_edit blog_entry %>
+        &nbsp;
+        <%= link_to_delete blog_entry, :title => t('are_you_sure_blog_entry') %>
+      </td>
+    </tr>
+  <% end %>
+<% else %>
+  <p><%= t('no_blog_entries') %></p>
 <% end %>
+
 </table>
