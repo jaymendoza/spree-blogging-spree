@@ -33,10 +33,3 @@ Tagging functionality is currently broken for sqlite-driven sites.
 * spork
 
 The included spec_helper.rb is configured for use with Spork due to Spree's extended loading time.
-
-
-== TODO
-
-* Month/Year archive page
-  * exist, but need to be hooked up to widget
-* Comments (?)
