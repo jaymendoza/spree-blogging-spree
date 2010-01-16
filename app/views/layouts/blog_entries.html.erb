@@ -15,17 +15,24 @@ if @body_class.nil?
 end
  %>
 <body class="<%= @body_class %>"<%= %( id="#{@body_id}") if @body_id %>>
-  <div id="header" class="container">                                                          
-    <%= link_to(image_tag('rsource/header.png', :alt => 'Recognition Source'), root_url) %>
+  <div id="header" class="container">
+    <ul id="nav-bar">
+      <div id="login-bar">
+        <%= render 'shared/login_bar' %>
+      </div>
+      <% if store_menu? %>
+        <%= render 'shared/store_menu' %>
+      <% end %>
+    </ul>
+  <%= logo %>
   </div>
-    <%= render :partial => 'static/blue_nav' %>
-  <div id="wrapper" class="container"> 
+  <div id="wrapper" class="container">
     <% if @content_for_sidebar %>
     <div id="sidebar">
       <%= yield :sidebar %>
     </div>
     <% end %>
-    
+
     <div id="content">
       <%= breadcrumbs(@taxon) if @taxon %>
       <% if flash[:notice] %>
