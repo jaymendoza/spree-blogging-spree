@@ -3,6 +3,7 @@ class CreateBlogEntries < ActiveRecord::Migration
     create_table :blog_entries do |t|
       t.column :title, :string
       t.column :body, :text
+      t.column :permalink, :string
       t.timestamps
     end
   end
