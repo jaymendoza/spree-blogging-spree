@@ -1,13 +1,12 @@
 # Uncomment this if you reference any of your controllers in activate
 # require_dependency 'application'
 
-class BlogExtension < Spree::Extension
+class BloggingSpreeExtension < Spree::Extension
   version "0.1.0"
   description "BloggingSpree: A Spree blogging solution"
-  url "git://github.com/jaymendoza/BloggingSpree.git"
+  url "git://github.com/jaymendoza/spree-blogging-spree.git"
 
   def activate
-
     Admin::BaseController.class_eval do
       before_filter :add_blog_tab
 
