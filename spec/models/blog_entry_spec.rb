@@ -41,12 +41,12 @@ describe BlogEntry do
     end
 
     describe "the processed set of entry data" do
-      it "should be an Array" do
-        @organized_entries.should be_an_instance_of(Array)
+      it "should be a Hash" do
+        @organized_entries.should be_an_instance_of(Hash)
       end
 
-      it "should have years as its root elements" do
-        @organized_entries.first[0].to_s.should match /\d{4}/
+      it "should have years as its keys" do
+        @organized_entries.keys.first.to_s.should match /\d{4}/
       end
 
       it "should have nested arrays of BlogEntries" do

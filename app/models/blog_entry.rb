@@ -28,23 +28,23 @@ class BlogEntry < ActiveRecord::Base
   private
 
   def self.organize_blog_entries
-    returning Array.new do |entries|
+    returning Hash.new do |entries|
       years.each do |year|
         months_for(year).each do |month|
           date = Date.new(year, month)
-          entries << [year, [[date.strftime("%B"), BlogEntry.by_date(date, :month)]]]
+          entries[year] ||= []
+          entries[year] << [date.strftime("%B"), BlogEntry.by_date(date, :month)]
         end
       end
     end
   end
 
   def self.years
-    all.map {|e| e.created_at.year }.uniq.sort.reverse
+    all.map {|e| e.created_at.year }.uniq
   end
 
   def self.months_for(year)
-    all.select {|e| e.created_at.year == year }.
-           map {|e| e.created_at.month }.uniq.sort.reverse
+    all.select {|e| e.created_at.year == year }.map {|e| e.created_at.month }.uniq
   end
 
   def create_permalink
