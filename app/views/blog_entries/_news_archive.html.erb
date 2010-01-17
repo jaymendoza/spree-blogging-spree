@@ -1,15 +1,24 @@
 <ul id="news-archive">
-<% news_archive.each do |year, months_with_entries| %>
-  <li class="year"><%= year %>
+<% news_archive.to_a.reverse.each do |year, months_with_entries| %>
+  <% d = Date.parse("1/#{year}") %>
+
+  <li> <span></span>
+    <%= link_to(year, news_archive_path(:year => d.year)) %>
+
     <ul class="months">
     <% months_with_entries.each do |month, entries| %>
-      <li><%= month %>
+      <% d = Date.parse("#{year}, #{month}") %>
+
+      <li> <span></span>
+        <%= link_to(month, news_archive_path(:year => d.year, :month => d.month)) %>
+
         <ul class="posts">
-        <% entries.each do |entry| %>
-          <li><%= link_to(entry.title, entry_permalink(entry)) %></li>
-        <% end %>
+          <% entries.each do |entry| %>
+            <li><%= link_to(entry.title, entry_permalink(entry)) %></li>
+          <% end %>
         </ul>
       </li>
+
     <% end %>
     </ul>
   </li>
