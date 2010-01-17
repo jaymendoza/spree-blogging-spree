@@ -2,7 +2,7 @@
 
 Originally forked from paulcc/spree-blog, this extension intends to offer a more complete blogging solution for use within the Spree E-Commerce application.
 
-Development is in its early stages, containing only a simple blog and a jQuery-powered news archive widget. See the current TODO list below.
+Development is in its early stages, containing only a simple blog and a jQuery-powered news archive widget. See the tracker[http://github.com/jaymendoza/spree-blogging-spree/issues] for future plans.
 
 
 == Installation
