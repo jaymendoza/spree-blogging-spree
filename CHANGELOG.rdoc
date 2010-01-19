@@ -1,5 +1,10 @@
-0.2.0 (Jan 19, 2009)
+0.2.1 (Jan 19, 2009)
+* Add sample data for Tags and Taggings. Remove sample data for Comments.
 
+* Rake tasks: update to work with edge Spree. fix outdated extension name.
+
+
+0.2.0 (Jan 19, 2009)
 * BACKWARDS INCOMPATIBLE: Update compatibility with Spree 0.9.99 by moving admin_tabs to hook
 
 * Rewrite news archive widget - see issue #1
@@ -15,4 +20,4 @@
 
 0.1.0 (Jan 18, 2009)
 
-* initial release
+* Initial release

@@ -2,7 +2,7 @@
 # require_dependency 'application'
 
 class BloggingSpreeExtension < Spree::Extension
-  version "0.2.0"
+  version "0.2.1"
   description "BloggingSpree: A Spree blogging solution"
   url "git://github.com/jaymendoza/spree-blogging-spree.git"
 
