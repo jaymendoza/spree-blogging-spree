@@ -3,14 +3,14 @@
   <% d = Date.parse("1/#{year}") %>
 
   <li> <span></span>
-    <%= link_to(year, news_archive_path(:year => d.year)) %>
+    <%= link_to(year, news_archive_path(:year => d.year, :month => nil, :day => nil)) %>
 
     <ul class="months">
     <% months_with_entries.each do |month, entries| %>
       <% d = Date.parse("#{year}, #{month}") %>
 
       <li> <span></span>
-        <%= link_to(month, news_archive_path(:year => d.year, :month => d.month)) %>
+        <%= link_to I18n.l(d, :format => "%B"), news_archive_path(:year => d.year, :month => d.month, :day => nil) %>
 
         <ul class="posts">
           <% entries.each do |entry| %>
