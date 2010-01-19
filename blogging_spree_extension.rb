@@ -2,18 +2,11 @@
 # require_dependency 'application'
 
 class BloggingSpreeExtension < Spree::Extension
-  version "0.1.0"
+  version "0.2.0"
   description "BloggingSpree: A Spree blogging solution"
   url "git://github.com/jaymendoza/spree-blogging-spree.git"
 
   def activate
-    # Admin::BaseController.class_eval do
-    #   before_filter :add_blog_tab
-
-    #   def add_blog_tab
-    #     @extension_tabs << [:blog, { :route => "admin_blog_entries" }]
-    #   end
-    # end
   end
 
   def self.require_gems(config)

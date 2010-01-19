@@ -1,0 +1,18 @@
+0.2.0 (Jan 19, 2009)
+
+* BACKWARDS INCOMPATIBLE: Update compatibility with Spree 0.9.99 by moving admin_tabs to hook
+
+* Rewrite news archive widget - see issue #1
+
+* Localize front-end views
+
+* Add beginnings of Russian tranlation
+
+* Fix incorrect widget links on single-entry blog pages - see issue #3
+
+* Dirty fix of 'select by tag' functionality with sqlite3
+
+
+0.1.0 (Jan 18, 2009)
+
+* initial release
