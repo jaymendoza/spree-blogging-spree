@@ -1,7 +1,7 @@
 ru-RU:
   blog: Блог
-  blog_entries: "Blog Entries"
-  no_blog_entries: "The blog does not currently contain any entries."
+  blog_entries: "Записи в блоге"
+  no_blog_entries: "На данный момент в блоге нет ни одной записи."
   blog_management: "Blog Management" 
   blog_management_description: "Manage the blog"
   are_you_sure_blog_entry: "Are you sure you want to delete this blog entry?"
@@ -9,7 +9,7 @@ ru-RU:
   back_to_the_blog: "Back to the blog"
   terms_and_conditions: "Terms and Conditions"
   submission_guidelines: "Submission Guidelines"
-  read_the_blog: "Read the blog"
-  new_entry: "New Entry"
-  tag_list_example: "(e.g. tag one, tag two, tag three)"
+  read_the_blog: "Читать блог"
+  new_entry: "Новая запись"
+  tag_list_example: "(например первая метка, вторая_метка, третья метка)"
   tags: Метки
