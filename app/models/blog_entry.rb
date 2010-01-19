@@ -1,4 +1,4 @@
-# -*- coding: undecided -*-
+# -*- coding: utf-8 -*-
 class BlogEntry < ActiveRecord::Base
   is_taggable :tags
   before_save :create_permalink

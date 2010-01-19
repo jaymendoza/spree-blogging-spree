@@ -1,5 +1,5 @@
-en-US:
-  blog: "Blog"
+ru-RU:
+  blog: Блог
   blog_entries: "Blog Entries"
   no_blog_entries: "The blog does not currently contain any entries."
   blog_management: "Blog Management" 
@@ -12,4 +12,4 @@ en-US:
   read_the_blog: "Read the blog"
   new_entry: "New Entry"
   tag_list_example: "(e.g. tag one, tag two, tag three)"
-  tags: Tags
+  tags: Метки

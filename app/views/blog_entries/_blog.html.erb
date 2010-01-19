@@ -3,7 +3,8 @@
   </h2>
 
   <div class="date">
-    <%= e.created_at.utc.strftime("%A, %d %B %Y") %>
+    <%#= e.created_at.utc.strftime("%A, %d %B %Y") %>
+    <%= l( e.created_at.to_date, :format => :long) %>
   </div>
 
   <div class="body">
