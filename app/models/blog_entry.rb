@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 class BlogEntry < ActiveRecord::Base
   is_taggable :tags
   before_save :create_permalink
@@ -23,12 +22,8 @@ class BlogEntry < ActiveRecord::Base
   end 
 
   def self.by_tag(name)
+    # Dirty fix for sqlite3
     # find(:all, :select => 'DISTINCT (blog_entries.*)', :joins => [:taggings, :tags], :conditions => {'tags.name' => name })
-
-    # Dirty fix.
-    ## We need to do the following, since sqlite can not correctly
-    ## handle DISTINCT (blog_entries.*)
-    ## SQLite3::SQLException: near "*": syntax error: SELECT DISTINCT (blog_entries.*) FROM "blog_entries"   INNER JOIN "taggings" ON "taggings".taggable_id = "blog_entries".id AND "taggings".taggable_type = 'BlogEntry' INNER JOIN "taggings" tags_blog_entries_join ON ("blog_entries"."id" = "tags_blog_entries_join"."taggable_id" AND "tags_blog_entries_join"."taggable_type" = 'BlogEntry')  INNER JOIN "tags" ON ("tags"."id" = "tags_blog_entries_join"."tag_id")  WHERE ("tags"."name" = 'новинки')  ORDER BY created_at DESC
     columns = 'blog_entries.id,blog_entries.title,blog_entries.permalink,blog_entries.body,blog_entries.created_at,blog_entries.updated_at'
     find(:all, :select => "DISTINCT #{columns}", :joins => [:taggings, :tags], :conditions => {'tags.name' => name })
   end
