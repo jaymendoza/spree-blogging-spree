@@ -26,7 +26,6 @@ $LOAD_PATH.unshift(rspec_base) if File.exist?(rspec_base)
 require 'spec/rake/spectask'
 # require 'spec/translator'
 
-
 # Cleanup the SPREE_ROOT constant so specs will load the environment
 Object.send(:remove_const, :SPREE_ROOT)
 
@@ -117,9 +116,23 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = true
 end
 
+namespace :test do
+  desc 'Functional test the blogging_spree extension.'
+  Rake::TestTask.new(:functionals) do |t|
+    t.libs << 'lib'
+    t.pattern = 'test/functional/*_test.rb'
+    t.verbose = true
+  end
+
+  desc 'Unit test the blogging_spree extension.'
+  Rake::TestTask.new(:units) do |t|
+    t.libs << 'lib'
+    t.pattern = 'test/unit/*_test.rb'
+    t.verbose = true
+  end
+end
+
 
 # Load any custom rakefiles for extension
-# NOTE: seems like other mechanism handles the bootstrap functionality
-Dir[File.dirname(__FILE__) + '/lib/tasks/*.rake'].sort.each { |f| load f }
-
+Dir[File.dirname(__FILE__) + '/tasks/*.rake'].sort.each { |f| require f }
 
