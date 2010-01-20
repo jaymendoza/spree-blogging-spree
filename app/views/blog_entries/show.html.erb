@@ -5,9 +5,11 @@
     </li>
   </ul>
 
-  <div id="blog-sidebar">
-    <%= render :partial => 'news_archive', :object => @news_archive %>
-  </div>
+  <% content_for :sidebar do %>
+    <div id="blog-sidebar">
+      <%= render :partial => 'news_archive', :object => @news_archive %>
+    </div>
+  <% end %>
 
   <br class="clearfloat" />
 </div>
