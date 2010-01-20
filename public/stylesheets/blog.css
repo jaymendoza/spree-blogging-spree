@@ -2,14 +2,13 @@ body.one-col #content { width: 970px }
 
 #blog-container { width: 850px; margin: 0 auto }
 #blog-entries { float: left; width: 630px; list-style: none; margin: 0; padding-bottom: 2em }
-/* #blog-sidebar { float: right; width: 185px} */
 
 #news-archive { width: 185px; margin: 0 }
 
 .blog_entry { width: 650px; }
 .blog_entry h2 { margin-bottom: -1px }
-.blog_entry h2 a { color: #1b3f71; text-decoration: none; line-height: 26px }
-.blog_entry .date { color: #caa627; font-weight: bold; margin-bottom: 8px }
+.blog_entry h2 a { text-decoration: none; line-height: 26px }
+.blog_entry .date { color: #717679; font-weight: bold; margin-bottom: 8px }
 .blog_entry p { margin-bottom: 15px }
 .blog_entry div.body { margin-bottom: 13px }
 
@@ -36,11 +35,11 @@ input#blog_entry_author, input#blog_entry_title { width: 400px }
 #news-archive li.year { width: 206px }
 
 #news-archive li a { text-decoration: none }
-#news-archive > li a { font-weight: bold; color: #caa627 }
-#news-archive ul.months > li a { color: #1b3f71 }
-#news-archive ul.posts > li a { font-weight: normal; color: #1b3f71 }
+#news-archive > li a { font-weight: bold; color: #717679 }
+#news-archive ul.months > li a { color: #717679 }
+#news-archive ul.posts > li a { font-weight: normal; color: #2e6ab1 }
 #news-archive ul.posts > li a:hover { text-decoration: underline }
 
-#news-archive span { cursor: pointer; color: #1b3f71 }
+#news-archive span { cursor: pointer; color: #717679 }
 #news-archive span:before { content: '►' }
 #news-archive span.open:before { content: '▼' }
