@@ -1,0 +1,30 @@
+---
+tagging_001:
+  tag: tag_001
+  taggable_type: BlogEntry
+  taggable: blog_entry_001
+
+tagging_002:
+  tag: tag_001
+  taggable_type: BlogEntry
+  taggable: blog_entry_002
+
+tagging_003:
+  tag: tag_002
+  taggable_type: BlogEntry
+  taggable: blog_entry_002
+
+tagging_004:
+  tag: tag_001
+  taggable_type: BlogEntry
+  taggable: blog_entry_003
+
+tagging_005:
+  tag: tag_002
+  taggable_type: BlogEntry
+  taggable: blog_entry_003
+
+tagging_006:
+  tag: tag_003
+  taggable_type: BlogEntry
+  taggable: blog_entry_003

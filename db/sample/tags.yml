@@ -1,0 +1,10 @@
+---
+tag_001:
+  name: foo
+  kind: tag
+tag_002:
+  name: bar
+  kind: tag
+tag_003:
+  name: baz
+  kind: tag

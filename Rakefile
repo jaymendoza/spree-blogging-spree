@@ -100,17 +100,17 @@ namespace :spec do
   end
 end
 
-desc 'Generate documentation for the blog extension.'
+desc 'Generate documentation for the blogging_spree extension.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'BlogExtension'
+  rdoc.title    = 'BloggingSpreeExtension'
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
 # For extensions that are in transition
-desc 'Test the blog extension.'
+desc 'Test the blogging_spree extension.'
 Rake::TestTask.new(:test) do |t|
   t.libs << 'lib'
   t.pattern = 'test/**/*_test.rb'

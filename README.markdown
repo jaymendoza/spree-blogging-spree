@@ -17,10 +17,7 @@ Installation
 Compatibility
 -------------
 
-* Spree 0.9.3*
-* Tagging functionality is currently broken for sqlite-driven sites.
-
-**may run on edge Spree with some modification*
+* Spree 0.9.99 (edge)
 
 
 Dependencies
