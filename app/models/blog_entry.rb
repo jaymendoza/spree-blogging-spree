@@ -22,10 +22,7 @@ class BlogEntry < ActiveRecord::Base
   end 
 
   def self.by_tag(name)
-    # Dirty fix for sqlite3
-    # find(:all, :select => 'DISTINCT (blog_entries.*)', :joins => [:taggings, :tags], :conditions => {'tags.name' => name })
-    columns = 'blog_entries.id,blog_entries.title,blog_entries.permalink,blog_entries.body,blog_entries.created_at,blog_entries.updated_at'
-    find(:all, :select => "DISTINCT #{columns}", :joins => [:taggings, :tags], :conditions => {'tags.name' => name })
+    find(:all, :select => 'DISTINCT blog_entries.*', :joins => [:taggings, :tags], :conditions => {'tags.name' => name })
   end
 
   private
