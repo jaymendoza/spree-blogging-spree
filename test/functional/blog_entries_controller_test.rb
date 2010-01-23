@@ -26,19 +26,37 @@ class BlogEntriesControllerTest < ActionController::TestCase
     end
   end
 
-#   context "on GET to archive with a year" do
-#     setup do
-#       BlogEntry.destroy_all
-#       Factory(:blog_entry, :created_at => Date.new(2020, 1))
-#       Factory(:blog_entry, :created_at => Date.new(2020, 2))
-#       Factory(:blog_entry, :created_at => Date.new(2020, 3))
-#       @blog_entries = BlogEntry.all
-#     end
-#
-#     should "find entries for the given year" do
-#       controller.class.skip_before_filter :load_news_archive_data
-#       BlogEntry.expects(:by_date).returns(@blog_entries)
-#       get :archive, :year => 2024
-#     end
-#   end
+  context "on GET to archive with a year" do
+    setup do
+      Factory(:blog_entry, :created_at => Date.new(2020, 1))
+      Factory(:blog_entry, :created_at => Date.new(2020, 2))
+      get :archive, :year => 2020
+    end
+
+    should_respond_with :success
+    should_render_template :index
+    should_assign_to(:blog_entries) { BlogEntry.all }
+
+    should "see the dates in the widget" do
+      assert_contain I18n.l( BlogEntry.first.created_at.to_date, :format => :long)
+      assert_contain I18n.l( BlogEntry.last.created_at.to_date, :format => :long)
+    end
+  end
+
+  context "on GET to tag with a tag" do
+    setup do
+      blog_entry = Factory(:blog_entry)
+      @tag = Factory(:tag, :name => "baz")
+      Factory(:tagging, :tag => @tag, :taggable => blog_entry)
+      get :tag, :tag => @tag.name
+    end
+
+    should_respond_with :success
+    should_render_template :index
+    should_assign_to(:blog_entries) { BlogEntry.all }
+
+    should "see the tag within the tag list" do
+      assert_have_selector "div[class='tags']/a[href='#{tag_path(@tag.name)}']"
+    end
+  end
 end

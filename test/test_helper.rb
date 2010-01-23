@@ -1,17 +1,22 @@
 require 'rubygems'
 require 'spork'
 
-# Loading more in this block will cause your tests to run faster. However,
-# if you change any configuration or code from libraries loaded here, you'll
-# need to restart spork for it take effect.
 Spork.prefork do
   require File.expand_path( File.dirname(__FILE__) + '/../../../../test/test_helper')
+  require 'monkeyspecdoc'
+  require 'rr'
+  require 'webrat'
 
-  # require 'monkeyspecdoc'
-  # require 'mocha'
+  class Test::Unit::TestCase
+    include Webrat::Matchers
+    include RR::Adapters::TestUnit
+
+    def response_body
+      @response.body
+    end
+  end
 end
 
-# This code will be run each time you run your specs.
 Spork.each_run do
   require File.expand_path(File.dirname(__FILE__) + "/factories")
 end
