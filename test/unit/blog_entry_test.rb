@@ -58,14 +58,14 @@ class BlogEntryTest < ActiveSupport::TestCase
       assert_contains organized_entries[2012][0][1], @third_entry
     end
 
-    should "generate a reverse-sorted list of the unique years included encompassed by the blog_entries" do
+    should "generate a reverse-sorted list of the unique years encompassed by the blog_entries" do
       years = BlogEntry.years
 
       assert years.is_a?(Array)
       assert_equal [2012, 2011, 2010], years
     end
 
-    should "generate a numeric list of which months contain blog_entries for a given year" do
+    should "generate a numeric list of the months that contain blog_entries for a given year" do
       months_one = BlogEntry.months_for(2010)
       months_two = BlogEntry.months_for(2011)
       months_three = BlogEntry.months_for(2012)
