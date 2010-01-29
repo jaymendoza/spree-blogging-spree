@@ -7,10 +7,6 @@ class BlogEntry < ActiveRecord::Base
 
   default_scope :order => "created_at DESC"
 
-  def self.latest(limit = 3)
-    find(:all, :limit => limit)
-  end
-
   def self.by_date(date, period = nil)
     if date.is_a?(Hash)
       keys = [:day, :month, :year].select {|key| date.include?(key) }
