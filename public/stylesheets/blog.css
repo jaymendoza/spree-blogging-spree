@@ -15,13 +15,13 @@ body.one-col #content { width: 970px }
 .tags { font-size: 11px }
 
 /* admin */
-table.entry-list { width: 1000px }
 table.entry-list th.date { width: 140px }
 table.entry-list th.author { width: 100px }
 table.entry-list th.title { width: 310px }
 table.entry-list th.body { width: 213px }
 
 input#blog_entry_author, input#blog_entry_title { width: 400px }
+textarea#blog_entry_body { margin-bottom: 10px }
 
 #no_entries { text-align: center; margin-top: 30px }
 

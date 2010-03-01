@@ -2,10 +2,17 @@
   <%= stylesheet_link_tag 'blog' %>
 <% end %>
 
+<div class='toolbar'>
+  <ul class='actions'>
+    <li>
+      <%= button_link_to t("new_entry"), new_object_url, :icon => 'add' %></p>
+    </li>
+  </ul>
+  <br class='clear' />
+</div>
+
 <h1><%= t('blog_entries') %></h1>
 
-<%= link_to t('new_entry'), new_admin_blog_entry_path %>
-<br/><br/>
 
 <% unless @blog_entries.blank? %>
   <table class="entry-list index">
@@ -17,7 +24,7 @@
 
   <% @blog_entries.each do |blog_entry| %>
     <tr id="<%= dom_id blog_entry %>">
-      <td><%=h blog_entry.created_at.strftime("%B %d, %Y") %></td>
+      <td><%= l( blog_entry.created_at.to_date, :format => :long) %></td>
       <td><%= blog_entry.title %></td>
       <td class="actions">
         <%= link_to_edit blog_entry %>
