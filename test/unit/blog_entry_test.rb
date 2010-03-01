@@ -79,4 +79,18 @@ class BlogEntryTest < ActiveSupport::TestCase
       assert_contains months_three, 3
     end
   end
+
+  context "with a BlogEntry created late in the day on 2/28/2010" do
+    setup do
+      Time.zone = 'Eastern Time (US & Canada)'
+      @entry = Factory(:blog_entry, :created_at => Time.parse('2010-02-28 21:00:00'))
+    end
+
+    should "retrieve given entry when queried for February entries" do
+      date = Date.new(2010, 2)
+      entries = BlogEntry.by_date(date, :month)
+      assert_contains entries, @entry
+    end
+  end
+
 end

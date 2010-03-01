@@ -11,7 +11,8 @@ class BlogEntry < ActiveRecord::Base
       date = Date.new(*keys.reverse.map {|key| date[key].to_i })
     end
 
-    find(:all, :conditions => {:created_at => (date.send("beginning_of_#{period}")..date.send("end_of_#{period}") )} )
+    time = date.to_time.in_time_zone
+    find(:all, :conditions => {:created_at => (time.send("beginning_of_#{period}")..time.send("end_of_#{period}") )} )
   end 
 
   def self.by_tag(name)
