@@ -1,10 +1,7 @@
 class BlogEntry < ActiveRecord::Base
   is_taggable :tags
   before_save :create_permalink
-
   validates_presence_of :title
-  validates_presence_of :body
-
   default_scope :order => "created_at DESC"
 
   def self.by_date(date, period = nil)
@@ -45,6 +42,11 @@ class BlogEntry < ActiveRecord::Base
 
   def create_permalink
     self.permalink = title.to_url
+  end
+
+  def validate
+    # nicEdit field contains "<br>" when blank
+    errors.add(:body, "can't be blank") if body =~ /^<br>$/
   end
 
 end
