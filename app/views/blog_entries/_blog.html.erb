@@ -1,17 +1,15 @@
-  <h2>
-    <%= link_to "<strong>#{e.title}</strong>", entry_permalink(e) %>
-  </h2>
+<h2><%= link_to e.title, entry_permalink(e) %></h2>
 
-  <div class="date">
-    <%= l( e.created_at.to_date, :format => :long) %>
-  </div>
+<div class="date">
+  <%= l( e.created_at.to_date, :format => :long) %>
+</div>
 
-  <div class="body">
-    <%= e.body %>
-  </div>
+<div class="body">
+  <%= raw e.body %>
+</div>
 
-  <% unless e.tag_list.empty? %>
-    <%= render :partial => 'tag_list', :locals => {:e => e}  %>
-  <% end %>
+<% unless e.tag_list.empty? %>
+  <%= render :partial => 'tag_list', :locals => {:e => e}  %>
+<% end %>
 
 <br/>

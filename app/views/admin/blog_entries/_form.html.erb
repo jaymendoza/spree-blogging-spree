@@ -3,7 +3,11 @@
   <%= stylesheet_link_tag 'blog' %>
 <% end %>
 
-<%= error_messages_for :blog_entry %>
+<% if @blog_entry.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= t(:blog_form_error_message) %></h2>
+  </div>
+<% end %>
 
 <p>
   <%= form.label :title %> <span class="required">*</span><br />

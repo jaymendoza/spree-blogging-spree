@@ -1,3 +1,5 @@
+require "is_taggable"
+
 class BlogEntry < ActiveRecord::Base
   is_taggable :tags
   before_save :create_permalink

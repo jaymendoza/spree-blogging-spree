@@ -1,6 +1,4 @@
 class Admin::BlogEntriesController < Admin::BaseController
-  require_role "admin" # You might want to remove this, and add security in the /config/easy_role_permissions.yml file
-  layout 'admin'
   resource_controller
 
   index.before do 
