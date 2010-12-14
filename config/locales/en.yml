@@ -14,3 +14,10 @@ en:
   tag_list_example: "(e.g. tag one, tag two, tag three)"
   tags: Tags
   blog_form_error_message: The following errors prohibited this form from being saved
+  blogs_main_image: Main image
+
+  activerecord:
+    attributes:
+      blog_entry:
+        title: Title
+        body: Body
