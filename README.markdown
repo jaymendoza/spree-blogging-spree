@@ -10,10 +10,10 @@ See the [issue tracker](http://github.com/jaymendoza/spree-blogging-spree/issues
 
 Installation
 ------------
-1. Add to your Gemfile:
-    gem ‘spree_blogging_spree’, :git => ‘git://github.com/divineforest/spree-blogging-spree.git’
+Add to your Gemfile:
+    gem 'spree_blogging_spree', :git => 'git://github.com/divineforest/spree-blogging-spree.git'
 
-2. Run
+Run:
     bundle install
     rails g spree_blogging_spree:install
     rake db:migrate`
