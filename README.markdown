@@ -11,15 +11,17 @@ See the [issue tracker](http://github.com/jaymendoza/spree-blogging-spree/issues
 Installation
 ------------
 1. Add to your Gemfile:
-gem 'spree-blogging-spree', :git => 'http://github.com/divineforest/spree-blogging-spree.git'
-2. Run `bundle install`
-3. Run `rails g spree_blogging_spree:install`
-4. Run `rake db:migrate`
+    gem ‘spree_blogging_spree’, :git => ‘git://github.com/divineforest/spree-blogging-spree.git’
+
+2. Run
+    bundle install
+    rails g spree_blogging_spree:install
+    rake db:migrate`
 
 Compatibility
 -------------
 
-* Spree 0.30 (edge)
+* Spree 0.30
 
 Dependencies
 ------------
@@ -30,7 +32,7 @@ Dependencies
 
 Testing
 -------
-NB: not tested to work with Spree 0.30 and Rails 3
+NB: tests may not work with Spree 0.30 and Rails 3
 
 * shoulda
 * factory_girl
