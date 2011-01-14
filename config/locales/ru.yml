@@ -20,4 +20,5 @@ ru:
     attributes:
       blog_entry:
         title: Имя
+        created_at: Дата создания
         body: Сообщение;
