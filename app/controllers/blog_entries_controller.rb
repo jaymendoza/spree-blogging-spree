@@ -9,7 +9,9 @@ class BlogEntriesController < Spree::BaseController
   end
 
   def index
-    @blog_entries = BlogEntry.find :all
+    pagination_options = {:per_page  => Spree::Config[:blog_entries_per_page],
+                          :page      => params[:page]}
+    @blog_entries = BlogEntry.published.paginate(pagination_options)
   end
 
   def tag

@@ -1,6 +1,9 @@
 <div id="blog-container">
 
   <% if !@blog_entries.empty? %>
+
+    <%= will_paginate @blog_entries %>
+
     <ul id="blog-entries">
       <% @blog_entries.each do |e| %>
         <li class="blog_entry">

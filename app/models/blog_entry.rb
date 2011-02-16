@@ -4,9 +4,10 @@ class BlogEntry < ActiveRecord::Base
   is_taggable :tags
   before_save :create_permalink
   validates_presence_of :title
-  default_scope :order => "created_at DESC"
 
+  default_scope :order => "created_at DESC"
   scope :latest, limit(1)
+  scope :published, lambda { where("blog_entries.created_at <= ?", Time.zone.now) }
 
   has_one :blog_entry_image, :as => :viewable, :dependent => :destroy
 
