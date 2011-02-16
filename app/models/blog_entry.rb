@@ -28,7 +28,7 @@ class BlogEntry < ActiveRecord::Base
   private
 
   def self.organize_blog_entries
-    returning Hash.new do |entries|
+    Hash.new.tap do |entries|
       years.each do |year|
         months_for(year).each do |month|
           date = Date.new(year, month)
