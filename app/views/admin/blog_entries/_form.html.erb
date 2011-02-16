@@ -16,6 +16,12 @@
 </p>
 
 <p>
+  <%= form.label :created_at %> <span class="required">*</span><br />
+  <%= form.date_select :created_at, :start_year => 2005 %>
+  <%= form.error_message_on :created_at %>
+</p>
+
+<p>
 	<%= form.fields_for :blog_entry_image do |blog_entry_image_fields| %>
 		<%= blog_entry_image_fields.label :attachment, t(:blogs_main_image) %><br/>
 		<%= blog_entry_image_fields.file_field :attachment %>
