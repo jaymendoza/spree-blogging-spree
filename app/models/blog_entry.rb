@@ -6,6 +6,8 @@ class BlogEntry < ActiveRecord::Base
   validates_presence_of :title
   default_scope :order => "created_at DESC"
 
+  scope :latest, limit(1)
+
   has_one :blog_entry_image, :as => :viewable, :dependent => :destroy
 
   accepts_nested_attributes_for :blog_entry_image#, :reject_if => lambda { |image| image[:attachment].blank? }
