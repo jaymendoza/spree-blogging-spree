@@ -13,6 +13,8 @@ en:
   new_entry: "New Entry"
   tag_list_example: "(e.g. tag one, tag two, tag three)"
   tags: Tags
+  older: Older Entries
+  newer: Newer
   blog_form_error_message: The following errors prohibited this form from being saved
   blogs_main_image: Main image
 

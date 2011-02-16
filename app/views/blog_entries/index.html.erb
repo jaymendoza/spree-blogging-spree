@@ -2,8 +2,6 @@
 
   <% if !@blog_entries.empty? %>
 
-    <%= will_paginate @blog_entries %>
-
     <ul id="blog-entries">
       <% @blog_entries.each do |e| %>
         <li class="blog_entry">
@@ -11,6 +9,9 @@
         </li>
       <% end %>
     </ul>
+
+    <%= will_paginate(:page_links => false, :previous_label => "&#171; #{t('newer')}", :next_label => "#{t('older')} &#187;") %>
+
   <% else %>
     <p id="no_entries"><%= t('no_blog_entries') %></p>
   <% end %>
