@@ -1,25 +1,25 @@
 class BlogEntriesController < Spree::BaseController
-  resource_controller
-  actions :show, :index
 
   before_filter :load_news_archive_data
 
-  index.before do
-    @blog_entries = BlogEntry.find :all
+  def show
+    unless @blog_entry = BlogEntry.find_by_permalink(params[:slug])
+        render :file => "#{RAILS_ROOT}/public/404.html", :layout => false, :status => 404
+    end
   end
 
-  show.before do
-    @blog_entry = BlogEntry.find_by_permalink(params[:slug])
+  def index
+    @blog_entries = BlogEntry.find :all
   end
 
   def tag
     @blog_entries = BlogEntry.by_tag(params[:tag])
-    render :action => :index
+    render 'index'
   end
 
   def archive
     @blog_entries = BlogEntry.by_date(params)
-    render :action => :index
+    render 'index'
   end
 
   private
