@@ -22,13 +22,6 @@
 </p>
 
 <p>
-	<%= form.fields_for :images, @object do |image_fields| %>
-		<%= image_fields.label :attachment, t(:blogs_main_image) %><br/>
-		<%= image_fields.file_field :attachment %>
-	<% end %>
-</p>
-
-<p>
 <%= form.label :body %><br />
   <%= form.text_area :body, :id => 'blog_entry_body', :style => 'width: 700px' %>
   <%= form.error_message_on :body %>
@@ -38,4 +31,15 @@
   <%= form.label :tag_list, 'Tag List' %><br />
   <%= form.text_field :tag_list %>
   <%= t('tag_list_example') %>
+</p>
+
+<div id="blog_entry_image_fields">
+<%= form.fields_for :images, @object do |f_images| %>
+    <%= render 'image_fields', :f => f_images %>
+<% end %>
+</div>
+
+<p>
+<%= link_to_add_fields icon('add') + ' ' + t("add_image"),
+    "div#blog_entry_image_fields", form, :images %>
 </p>
