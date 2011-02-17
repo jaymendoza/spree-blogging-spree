@@ -5,13 +5,13 @@ body.one-col #content { width: 970px }
 
 #news-archive { margin: 0 }
 
-.blog_entry { }
+.blog_entry { margin-bottom: 2em; clear: both; }
 .blog_entry h2 { margin-bottom: -1px }
 .blog_entry h2 a { text-decoration: none; line-height: 26px }
 .blog_entry .date { color: #717679; font-weight: bold; margin-bottom: 8px }
 .blog_entry div.body img { float: left; margin-right: 10px; margin-bottom: 5px; }
 
-.tags { font-size: 11px }
+.blog_entry .tags { font-size: 11px; margin-top: 11px; }
 
 #blog-container .pagination { clear: both; }
 #blog-container .pagination span.disabled { display: none; }
