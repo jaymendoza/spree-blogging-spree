@@ -1,5 +1,9 @@
-    <p class="imagefields">
-		<%= f.label :attachment, t(:images) %><br/>
+    <div class="fields" style="clear: left">
+        <% unless f.object.new_record? %>
+            <div style="float: left; margin: 0 1em 1em 0">
+                <%= image_tag f.object.attachment.url(:mini) %>
+            </div>
+        <% end %>
 		<%= f.file_field :attachment %>
         <%= link_to_remove_fields t("remove"), f %>
-    </p>
+    </div>

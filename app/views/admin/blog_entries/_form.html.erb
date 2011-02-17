@@ -34,7 +34,8 @@
 </p>
 
 <div id="blog_entry_image_fields">
-<%= form.fields_for :images, @object do |f_images| %>
+<%= form.label :attachment, t(:images) %><br/>
+<%= form.fields_for :images do |f_images| %>
     <%= render 'image_fields', :f => f_images %>
 <% end %>
 </div>

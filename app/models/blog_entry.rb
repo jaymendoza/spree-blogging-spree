@@ -11,8 +11,8 @@ class BlogEntry < ActiveRecord::Base
 
   has_many :images, :as => :viewable, :dependent => :destroy, :class_name => "BlogEntryImage"
 
-  accepts_nested_attributes_for :images, :reject_if => lambda { |image| image[:attachment].blank? }, :allow_destroy => true
-
+  accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:attachment].blank? && a[:_destroy] != "1" }, :allow_destroy => true
+ 
   def self.by_date(date, period = nil)
     if date.is_a?(Hash)
       keys = [:day, :month, :year].select {|key| date.include?(key) }
