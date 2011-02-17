@@ -9,18 +9,16 @@ class BlogEntriesController < Spree::BaseController
   end
 
   def index
-    pagination_options = {:per_page  => Spree::Config[:blog_entries_per_page],
-                          :page      => params[:page]}
-    @blog_entries = BlogEntry.published.paginate(pagination_options)
+    @blog_entries = BlogEntry.published.paginate(pagination_options(params))
   end
 
   def tag
-    @blog_entries = BlogEntry.by_tag(params[:tag])
+    @blog_entries = BlogEntry.by_tag(params[:tag]).paginate(pagination_options(params))
     render 'index'
   end
 
   def archive
-    @blog_entries = BlogEntry.by_date(params)
+    @blog_entries = BlogEntry.by_date(params).paginate(pagination_options(params))
     render 'index'
   end
 
@@ -29,4 +27,10 @@ class BlogEntriesController < Spree::BaseController
   def load_news_archive_data
     @news_archive = BlogEntry.organize_blog_entries
   end
+
+  def pagination_options(params)
+    @pagination_options ||= {:per_page  => Spree::Config[:blog_entries_per_page],
+                             :page      => params[:page]}
+  end
+
 end
