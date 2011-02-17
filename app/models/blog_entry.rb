@@ -5,9 +5,9 @@ class BlogEntry < ActiveRecord::Base
   before_save :create_permalink
   validates_presence_of :title
 
-  default_scope :order => "created_at DESC"
-  scope :latest, limit(1)
+  default_scope order("created_at DESC")
   scope :published, lambda { where("blog_entries.created_at <= ?", Time.zone.now) }
+  scope :latest, lambda { |n| published.limit(n) }
 
   has_one :blog_entry_image, :as => :viewable, :dependent => :destroy
 
@@ -30,10 +30,15 @@ class BlogEntry < ActiveRecord::Base
 
   private
 
-  def self.organize_blog_entries
+  def self.archives_before(date)
+      published.where("blog_entries.created_at < ?", date)
+  end
+
+  def self.organize_archives(before=nil)
+    before ||= Date.now
     Hash.new.tap do |entries|
       years.each do |year|
-        months_for(year).each do |month|
+        months_for(year, before).each do |month|
           date = Date.new(year, month)
           entries[year] ||= []
           entries[year] << [date.strftime("%B"), BlogEntry.by_date(date, :month)]
@@ -46,8 +51,8 @@ class BlogEntry < ActiveRecord::Base
     all.map {|e| e.created_at.year }.uniq
   end
 
-  def self.months_for(year)
-    all.select {|e| e.created_at.year == year }.map {|e| e.created_at.month }.uniq
+  def self.months_for(year, before)
+    all.select {|e| e.created_at.year == year && e.created_at < before }.map {|e| e.created_at.month }.uniq
   end
 
   def create_permalink

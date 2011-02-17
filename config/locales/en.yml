@@ -1,6 +1,8 @@
 en:
   blog: "Blog"
   blog_entries: "Blog Entries"
+  recent_news: "Recent News"
+  news_archive: "News Archive"
   no_blog_entries: "The blog does not currently contain any entries."
   blog_management: "Blog Management" 
   blog_management_description: "Manage the blog"

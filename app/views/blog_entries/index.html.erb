@@ -10,7 +10,9 @@
       <% end %>
     </ul>
 
-    <%= will_paginate(:page_links => false, :previous_label => "&#171; #{t('newer')}", :next_label => "#{t('older')} &#187;") %>
+    <% if @blog_entries.respond_to? :total_pages %>
+        <%= will_paginate(:page_links => false, :previous_label => "&#171; #{t('newer')}", :next_label => "#{t('older')} &#187;") %>
+    <% end %>
 
   <% else %>
     <p id="no_entries"><%= t('no_blog_entries') %></p>
@@ -18,7 +20,7 @@
 
   <% content_for :sidebar do %>
     <div id="blog-sidebar">
-      <%= render :partial => 'news_archive', :object => @news_archive %>
+      <%= render :partial => 'news_archive', :object => @archives %>
     </div>
   <% end %>
 

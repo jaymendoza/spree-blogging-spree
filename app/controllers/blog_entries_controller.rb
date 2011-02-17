@@ -18,14 +18,19 @@ class BlogEntriesController < Spree::BaseController
   end
 
   def archive
-    @blog_entries = BlogEntry.by_date(params).paginate(pagination_options(params))
+    @blog_entries = BlogEntry.by_date(params)
     render 'index'
   end
 
   private
 
   def load_news_archive_data
-    @news_archive = BlogEntry.organize_blog_entries
+      unless Spree::Config[:blog_entries_recent_sidebar].blank?
+          @latest = BlogEntry.latest(Spree::Config[:blog_entries_recent_sidebar])
+          @archives = BlogEntry.organize_archives(@latest.to_a.last.created_at)
+      else
+          @archives = BlogEntry.organize_archives
+      end
   end
 
   def pagination_options(params)
