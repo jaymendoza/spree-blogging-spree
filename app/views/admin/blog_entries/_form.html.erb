@@ -22,9 +22,9 @@
 </p>
 
 <p>
-	<%= form.fields_for :blog_entry_image do |blog_entry_image_fields| %>
-		<%= blog_entry_image_fields.label :attachment, t(:blogs_main_image) %><br/>
-		<%= blog_entry_image_fields.file_field :attachment %>
+	<%= form.fields_for :images, @object do |image_fields| %>
+		<%= image_fields.label :attachment, t(:blogs_main_image) %><br/>
+		<%= image_fields.file_field :attachment %>
 	<% end %>
 </p>
 

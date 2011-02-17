@@ -9,9 +9,9 @@ class BlogEntry < ActiveRecord::Base
   scope :published, lambda { where("blog_entries.created_at <= ?", Time.zone.now) }
   scope :latest, lambda { |n| published.limit(n) }
 
-  has_one :blog_entry_image, :as => :viewable, :dependent => :destroy
+  has_many :images, :as => :viewable, :dependent => :destroy, :class_name => "BlogEntryImage"
 
-  accepts_nested_attributes_for :blog_entry_image#, :reject_if => lambda { |image| image[:attachment].blank? }
+  accepts_nested_attributes_for :images#, :reject_if => lambda { |image| image[:attachment].blank? }
 
   def self.by_date(date, period = nil)
     if date.is_a?(Hash)
