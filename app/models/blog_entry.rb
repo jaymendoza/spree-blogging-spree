@@ -7,7 +7,7 @@ class BlogEntry < ActiveRecord::Base
 
   default_scope order("created_at DESC")
   scope :published, lambda { where("blog_entries.created_at <= ?", Time.zone.now) }
-  scope :latest, lambda { |n| published.limit(n) }
+  scope :latest, lambda { |n| published.limit(n.to_i) }
 
   has_many :images, :as => :viewable, :dependent => :destroy, :class_name => "BlogEntryImage"
 
