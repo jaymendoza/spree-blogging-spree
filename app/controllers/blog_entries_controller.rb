@@ -26,9 +26,8 @@ class BlogEntriesController < Spree::BaseController
 
   def load_news_archive_data
       unless Spree::Config[:blog_entries_recent_sidebar].blank?
-          if @latest = BlogEntry.latest(Spree::Config[:blog_entries_recent_sidebar])
-            @archives = BlogEntry.organize_archives(@latest.to_a.last.created_at)
-          end
+          @latest = BlogEntry.latest(Spree::Config[:blog_entries_recent_sidebar])
+          @archives = BlogEntry.organize_archives(@latest.to_a.last.created_at) unless @latest.blank?
       else
           @archives = BlogEntry.organize_archives
       end
