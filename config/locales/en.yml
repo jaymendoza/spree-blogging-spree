@@ -20,9 +20,13 @@ en:
   newer: Newer
   blog_form_error_message: The following errors prohibited this form from being saved
   blogs_main_image: Main image
+  editing_blog_entry: Editing Blog Entry
+  new_blog_entry: New Blog Entry
 
   activerecord:
     attributes:
       blog_entry:
         title: Title
         body: Body
+        created_at: Created at
+
