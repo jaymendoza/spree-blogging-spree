@@ -1,4 +1,4 @@
-<h1>Editing Blog Entry</h1>
+<h1><%= t :editing_blog_entry %></h1>
 
 <% form_for([:admin, @blog_entry], :html => { :multipart => true }) do |f| %>
   <%= render :partial => f %>
