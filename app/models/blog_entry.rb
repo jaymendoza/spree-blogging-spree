@@ -6,6 +6,11 @@ class BlogEntry < ActiveRecord::Base
     date_hack(attributes, "created_at") unless attributes.nil?
     super(attributes)
   end
+  
+  def update_attributes(attributes={})
+    date_hack(attributes, "created_at") unless attributes.nil?
+    super(attributes)
+  end
 
   def date_hack(attributes, property)
     keys, values = [], []
