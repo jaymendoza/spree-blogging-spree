@@ -1,6 +1,19 @@
 require "is_taggable"
 
 class BlogEntry < ActiveRecord::Base
+  
+  def initialize(attributes={})
+    date_hack(attributes, "created_at") unless attributes.nil?
+    super(attributes)
+  end
+
+  def date_hack(attributes, property)
+    keys, values = [], []
+    attributes.each_key {|k| keys << k if k =~ /#{property}/ }.sort
+    keys.each { |k| values << attributes[k]; attributes.delete(k); }
+    attributes[property] = values.join("-") 
+  end
+  
   is_taggable :tags
   before_save :create_permalink
   validates_presence_of :title
