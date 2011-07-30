@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <%= javascript_include_tag 'nicEdit', 'nicEditConfig' %>
+  <%#= javascript_include_tag 'nicEdit', 'nicEditConfig' %>
   <%= stylesheet_link_tag 'blog' %>
 <% end %>
 
@@ -23,7 +23,7 @@
 
 <p>
 <%= form.label :body %><br />
-  <%= form.text_area :body, :id => 'blog_entry_body', :style => 'width: 700px' %>
+  <%= form.text_area :body, :style => 'width: 700px' %>
   <%= form.error_message_on :body %>
 </p>
 

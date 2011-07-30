@@ -9,12 +9,12 @@
       <%= link_to(image_tag(e.images.first.attachment.url(:normal)), e.images.first.attachment.url(:large), :class=>'blog_image') %>
     <% end %>
 
-  <%= raw e.body %>
+  <%= raw RedCloth.new(e.body).to_html %>
 
   <% if e.images.length > 1 %>
       <div class="images">
           <% e.images.each do |image| %>
-              <%= link_to(image_tag(image.attachment.url(:normal)), image.attachment.url(:large)) %>
+              <%#= link_to(image_tag(image.attachment.url(:normal)), image.attachment.url(:large)) %>
           <% end %>
       </div>
    <% end %>
