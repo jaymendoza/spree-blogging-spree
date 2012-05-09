@@ -9,7 +9,7 @@
       <%= link_to(image_tag(e.images.first.attachment.url(:normal)), e.images.first.attachment.url(:large), :class=>'blog_image') %>
     <% end %>
 
-  <%= raw RedCloth.new(e.body).to_html %>
+  <%= raw BlueCloth.new(e.body).to_html %>
 
   <% if e.images.length > 1 %>
       <div class="images">
