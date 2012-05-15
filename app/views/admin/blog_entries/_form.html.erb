@@ -1,5 +1,5 @@
 <% content_for :head do %>
-  <%= javascript_include_tag 'nicEdit', 'nicEditConfig' %>
+  <%#= javascript_include_tag 'nicEdit', 'nicEditConfig' %>
   <%= stylesheet_link_tag 'blog' %>
 <% end %>
 
@@ -16,15 +16,14 @@
 </p>
 
 <p>
-	<%= form.fields_for :blog_entry_image do |blog_entry_image_fields| %>
-		<%= blog_entry_image_fields.label :attachment, t(:blogs_main_image) %><br/>
-		<%= blog_entry_image_fields.file_field :attachment %>
-	<% end %>
+  <%= form.label :created_at %> <span class="required">*</span><br />
+  <%= form.datetime_select :created_at, :start_year => 2005 %>
+  <%= form.error_message_on :created_at %>
 </p>
 
 <p>
 <%= form.label :body %><br />
-  <%= form.text_area :body, :id => 'blog_entry_body', :style => 'width: 700px' %>
+  <%= form.text_area :body, :style => 'width: 700px' %>
   <%= form.error_message_on :body %>
 </p>
 
@@ -32,4 +31,16 @@
   <%= form.label :tag_list, 'Tag List' %><br />
   <%= form.text_field :tag_list %>
   <%= t('tag_list_example') %>
+</p>
+
+<div id="blog_entry_image_fields">
+<%= form.label :attachment, t(:images) %><br/>
+<%= form.fields_for :images do |f_images| %>
+    <%= render 'image_fields', :f => f_images %>
+<% end %>
+</div>
+
+<p>
+<%= link_to_add_fields icon('add') + ' ' + t("add_image"),
+    "div#blog_entry_image_fields", form, :images %>
 </p>

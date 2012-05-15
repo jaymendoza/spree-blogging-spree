@@ -5,12 +5,23 @@
 </div>
 
 <div class="body">
-	<%= link_to(image_tag(e.blog_entry_image.attachment.url(:normal)), e) if e.blog_entry_image %>
-  <%= raw e.body %>
+    <% if e.images.length == 1 %>
+      <%= link_to(image_tag(e.images.first.attachment.url(:normal)), e.images.first.attachment.url(:large), :class=>'blog_image') %>
+    <% end %>
+
+  <%= raw BlueCloth.new(e.body).to_html %>
+
+  <% if e.images.length > 1 %>
+      <div class="images">
+          <% e.images.each do |image| %>
+              <%#= link_to(image_tag(image.attachment.url(:normal)), image.attachment.url(:large)) %>
+          <% end %>
+      </div>
+   <% end %>
 </div>
 
 <% unless e.tag_list.empty? %>
   <%= render :partial => 'tag_list', :locals => {:e => e}  %>
 <% end %>
 
-<br/>
+<br class="clear" />

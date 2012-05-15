@@ -1,6 +1,8 @@
 en:
   blog: "Blog"
   blog_entries: "Blog Entries"
+  recent_news: "Recent News"
+  news_archive: "News Archive"
   no_blog_entries: "The blog does not currently contain any entries."
   blog_management: "Blog Management" 
   blog_management_description: "Manage the blog"
@@ -11,13 +13,20 @@ en:
   submission_guidelines: "Submission Guidelines"
   read_the_blog: "Read the blog"
   new_entry: "New Entry"
+  add_image: "New Image"
   tag_list_example: "(e.g. tag one, tag two, tag three)"
   tags: Tags
+  older: Older Entries
+  newer: Newer
   blog_form_error_message: The following errors prohibited this form from being saved
   blogs_main_image: Main image
+  editing_blog_entry: Editing Blog Entry
+  new_blog_entry: New Blog Entry
 
   activerecord:
     attributes:
       blog_entry:
         title: Title
         body: Body
+        created_at: Created at
+

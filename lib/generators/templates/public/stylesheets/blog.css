@@ -1,19 +1,22 @@
 body.one-col #content { width: 970px }
 
-#blog-container { width: 850px; margin: 0 auto }
-#blog-entries { float: left; width: 630px; list-style: none; margin: 0; padding-bottom: 2em }
+#blog-container { margin: 0 auto }
+#blog-entries { float: left; list-style: none; margin: 0; padding-bottom: 2em }
 
-#news-archive { width: 185px; margin: 0 }
+#news-archive { margin: 0 }
 
-.blog_entry { width: 650px; }
+.blog_entry { margin-bottom: 2em; clear: both; }
 .blog_entry h2 { margin-bottom: -1px }
 .blog_entry h2 a { text-decoration: none; line-height: 26px }
 .blog_entry .date { color: #717679; font-weight: bold; margin-bottom: 8px }
-.blog_entry p { margin-bottom: 15px }
-.blog_entry div.body { margin-bottom: 13px }
 .blog_entry div.body img { float: left; margin-right: 10px; margin-bottom: 5px; }
 
-.tags { font-size: 11px }
+.blog_entry .tags { font-size: 11px; margin-top: 11px; }
+
+#blog-container .pagination { clear: both; }
+#blog-container .pagination span.disabled { display: none; }
+#blog-container .pagination a.previous_page { float: left; }
+#blog-container .pagination a.next_page { float: right; }
 
 /* admin */
 table.entry-list th.date { width: 140px }
@@ -27,20 +30,19 @@ textarea#blog_entry_body { margin-bottom: 10px }
 #no_entries { text-align: center; margin-top: 30px }
 
 /* news archive widget */
-#blog-sidebar ul.months { width: 185px }
-#blog-sidebar ul ul li { font-weight: normal }
+#blog-sidebar ul { padding-bottom: 0.6em; }
+#blog-sidebar ul.posts { padding-bottom: 0; }
+#blog-sidebar ul ul.months { margin-left: 0.2em }
+#blog-sidebar ul a.month { font-weight: bold; }
+#blog-sidebar ul ul li { font-weight: normal; margin-bottom: 0.6em; }
 
 #blog-sidebar li { list-style-type: none }
-#blog-sidebar li ul.posts { width: 168px }
-
-#news-archive li.year { width: 206px }
 
 #news-archive li a { text-decoration: none }
-#news-archive > li a { font-weight: bold; color: #717679 }
-#news-archive ul.months > li a { color: #717679 }
-#news-archive ul.posts > li a { font-weight: normal; color: #2e6ab1 }
 #news-archive ul.posts > li a:hover { text-decoration: underline }
 
-#news-archive span { cursor: pointer; color: #717679 }
-#news-archive span:before { content: '►' }
-#news-archive span.open:before { content: '▼' }
+#news-archive > li { padding-bottom: 0.6em; }
+#news-archive h6 { display:inline; font-size: 100%; margin: 0; padding: 0; cursor: pointer; color: #717679 }
+#news-archive > li > h6:before { content: '►' }
+#news-archive > li.open > h6:before { content: '▼' }
+
