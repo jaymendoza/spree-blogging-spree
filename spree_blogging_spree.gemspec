@@ -15,8 +15,6 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.has_rdoc = true
-
   s.add_dependency('spree_core', '>= 0.30.0')
   s.add_dependency('is_taggable')
 end

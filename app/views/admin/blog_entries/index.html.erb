@@ -17,8 +17,8 @@
 <% unless @blog_entries.blank? %>
   <table class="entry-list index">
     <tr>
-      <th class="date">Date</th>
-      <th class="title">Title</th>
+      <th class="date"><%= t :created_at, :scope => [:activerecord, :attributes, :blog_entry] %></th>
+      <th class="title"><%= t :title, :scope => [:activerecord, :attributes, :blog_entry] %></th>
       <th></th> 
     </tr>
 

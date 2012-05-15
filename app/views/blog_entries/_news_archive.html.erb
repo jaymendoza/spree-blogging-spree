@@ -1,26 +1,37 @@
-<ul id="news-archive">
-<% news_archive.to_a.reverse.each do |year, months_with_entries| %>
-  <% d = Date.parse("1/#{year}") %>
-
-  <li> <span></span>
-    <%= link_to(year, news_archive_path(:year => d.year)) %>
-
-    <ul class="months">
-    <% months_with_entries.each do |month, entries| %>
-      <% d = Date.parse("#{year}, #{month}") %>
-
-      <li> <span></span>
-        <%= link_to I18n.l(d, :format => "%B"), news_archive_path(:year => d.year, :month => d.month) %>
-
-        <ul class="posts">
-          <% entries.each do |entry| %>
-            <li><%= link_to(entry.title, entry_permalink(entry)) %></li>
-          <% end %>
-        </ul>
-      </li>
-
-    <% end %>
+<% unless @latest.blank? %>
+    <h5><%= t(:recent_news) %></h5>
+    <ul class="newsnav">
+        <% @latest.each do |news| %>
+            <li><%= link_to news.title, entry_permalink(news) %> <br />
+            <small><%= I18n.l(news.created_at, :format => "%B %d %Y") %></small></li>
+        <% end %>
     </ul>
-  </li>
 <% end %>
-</ul>
+<% unless @archives.blank? %>
+    <h5><%= t(:news_archive) %></h5>
+        <ul id="news-archive">
+        <% @archives.to_a.reverse.each do |year, months_with_entries| %>
+          <% d = Date.parse("1/#{year}") %>
+
+          <li><h6><%= year %></h6>
+
+            <ul class="months">
+            <% months_with_entries.each do |month, entries| %>
+              <% d = Date.parse("#{year}, #{month}") %>
+
+              <li>
+                <%= link_to I18n.l(d, :format => "%B"), news_archive_path(:year => d.year, :month => d.month), :class=>'month' %>
+
+                <ul class="posts">
+                  <% entries.each do |entry| %>
+                    <li><%= link_to(entry.title, entry_permalink(entry)) %></li>
+                  <% end %>
+                </ul>
+              </li>
+
+            <% end %>
+            </ul>
+          </li>
+        <% end %>
+        </ul>
+<% end %>

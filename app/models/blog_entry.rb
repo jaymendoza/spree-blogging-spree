@@ -1,15 +1,36 @@
 require "is_taggable"
 
 class BlogEntry < ActiveRecord::Base
+  
+  def initialize(attributes={})
+    date_hack(attributes, "created_at") unless attributes.nil?
+    super(attributes)
+  end
+  
+  def update_attributes(attributes={})
+    date_hack(attributes, "created_at") unless attributes.nil?
+    super(attributes)
+  end
+
+  def date_hack(attributes, property)
+    keys, values = [], []
+    attributes.each_key {|k| keys << k if k =~ /#{property}/ }.sort
+    keys.each { |k| values << attributes[k]; attributes.delete(k); }
+    attributes[property] = values.join("-") 
+  end
+  
   is_taggable :tags
   before_save :create_permalink
   validates_presence_of :title
-  default_scope :order => "created_at DESC"
 
-  has_one :blog_entry_image, :as => :viewable, :dependent => :destroy
+  default_scope order("created_at DESC")
+  scope :published, lambda { where("blog_entries.created_at <= ?", Time.zone.now) }
+  scope :latest, lambda { |n| published.limit(n.to_i) }
 
-  accepts_nested_attributes_for :blog_entry_image#, :reject_if => lambda { |image| image[:attachment].blank? }
+  has_many :images, :as => :viewable, :dependent => :destroy, :class_name => "BlogEntryImage"
 
+  accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:attachment].blank? && a[:_destroy] != "1" }, :allow_destroy => true
+ 
   def self.by_date(date, period = nil)
     if date.is_a?(Hash)
       keys = [:day, :month, :year].select {|key| date.include?(key) }
@@ -27,10 +48,15 @@ class BlogEntry < ActiveRecord::Base
 
   private
 
-  def self.organize_blog_entries
-    returning Hash.new do |entries|
+  def self.archives_before(date)
+      published.where("blog_entries.created_at < ?", date)
+  end
+
+  def self.organize_archives(before=nil)
+    before ||= Date.now
+    Hash.new.tap do |entries|
       years.each do |year|
-        months_for(year).each do |month|
+        months_for(year, before).each do |month|
           date = Date.new(year, month)
           entries[year] ||= []
           entries[year] << [date.strftime("%B"), BlogEntry.by_date(date, :month)]
@@ -43,8 +69,8 @@ class BlogEntry < ActiveRecord::Base
     all.map {|e| e.created_at.year }.uniq
   end
 
-  def self.months_for(year)
-    all.select {|e| e.created_at.year == year }.map {|e| e.created_at.month }.uniq
+  def self.months_for(year, before)
+    all.select {|e| e.created_at.year == year && e.created_at < before }.map {|e| e.created_at.month }.uniq
   end
 
   def create_permalink
