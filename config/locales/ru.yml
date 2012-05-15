@@ -1,4 +1,4 @@
-ru-RU:
+ru:
   blog: Блог
   blog_entries: "Записи в блоге"
   no_blog_entries: "На данный момент в блоге нет ни одной записи."
@@ -13,3 +13,11 @@ ru-RU:
   new_entry: "Новая запись"
   tag_list_example: "(например первая метка, вторая_метка, третья метка)"
   tags: Метки
+  blog_form_error_message: Не получилось сохранить запись по следующим причинам
+  blogs_main_image: Основная картинка
+
+  activerecord:
+    attributes:
+      blog_entry:
+        title: Имя
+        body: Сообщение;

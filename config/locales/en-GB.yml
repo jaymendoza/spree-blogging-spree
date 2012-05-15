@@ -14,3 +14,4 @@ en-GB:
   read_the_blog: "Read the blog"
   new_blog_entry: "New blog entry"
   tags: Tags
+  blog_form_error_message: The following errors prohibited this form from being saved

@@ -11,6 +11,7 @@ body.one-col #content { width: 970px }
 .blog_entry .date { color: #717679; font-weight: bold; margin-bottom: 8px }
 .blog_entry p { margin-bottom: 15px }
 .blog_entry div.body { margin-bottom: 13px }
+.blog_entry div.body img { float: left; margin-right: 10px; margin-bottom: 5px; }
 
 .tags { font-size: 11px }
 
