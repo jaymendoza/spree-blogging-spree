@@ -1,3 +1,5 @@
+This fork updates extension to work with Spree 0.30 and Rails 3. Installation via gem (bundler)
+
 [BloggingSpree](http://github.com/jaymendoza/spree-blogging-spree/)
 ---------------
 
@@ -8,17 +10,18 @@ See the [issue tracker](http://github.com/jaymendoza/spree-blogging-spree/issues
 
 Installation
 ------------
+Add to your Gemfile:
+    gem 'spree_blogging_spree', :git => 'git://github.com/divineforest/spree-blogging-spree.git'
 
-    script/extension install git://github.com/jaymendoza/spree-blogging-spree.git
-    sudo rake gems:install
-    rake db:migrate
-
+Run:
+    bundle install
+    rails g spree_blogging_spree:install
+    rake db:migrate`
 
 Compatibility
 -------------
 
-* Spree 0.9.99 (edge)
-
+* Spree 0.30
 
 Dependencies
 ------------
@@ -27,9 +30,9 @@ Dependencies
 * jQuery
 * nicEdit *(included)*
 
-
 Testing
 -------
+NB: tests may not work with Spree 0.30 and Rails 3
 
 * shoulda
 * factory_girl

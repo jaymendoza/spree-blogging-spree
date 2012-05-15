@@ -1,3 +1,6 @@
+0.4.0 (Nov 12, 2010)
+* Updated to work with Spree 0.30 and Rails 3
+
 0.3.0 (Mar 1, 2010)
 * Make BlogEntry.by_date retrieve entries based on server's local time - see issue #7
 
